@@ -249,10 +249,12 @@
                     <button class="btn btn-link me-3" data-bs-toggle="modal" data-bs-target="#searchModal">
                         <i class="fas fa-search"></i>
                     </button>
-                    <a href="#" class="btn btn-link position-relative me-3">
+
+                    <a href="{{ route('cart.view') }}" class="btn btn-link position-relative me-3">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
                     </a>
+                    
                     <a href="#" class="btn btn-link">
                         <i class="fas fa-user"></i>
                     </a>
@@ -381,7 +383,14 @@
                             <h5 class="card-title">iPhone 14 Pro Max</h5>
                             <p class="card-text text-muted">Smartphone con cámara profesional y chip A16 Bionic</p>
                             <div class="d-grid">
-                                <button class="btn btn-primary">Agregar al Carrito</button>
+                                <button class="btn add-to-cart-btn" 
+                            data-product="iPhone 14 Pro Max"
+                            data-price="799"
+                            data-image="{{ asset('img/Iphone.webp') }}"
+                            style="background: var(--tech-blue); border: none; color: white; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                        <i class="fas fa-shopping-cart me-2"></i>
+                        Agregar al Carrito
+                    </button>
                             </div>
                         </div>
                     </div>
@@ -439,7 +448,16 @@
                             <h5 class="card-title">MacBook Air M2</h5>
                             <p class="card-text text-muted">Laptop ultradelgada con SSD de 256 GB y 8GB RAM</p>
                             <div class="d-grid">
-                                <button class="btn btn-primary">Agregar al Carrito</button>
+
+                             <button class="btn add-to-cart-btn" 
+                            data-product="iPhone 14 Pro Max"
+                            data-price="799"
+                            data-image="{{ asset('img/MacBook Air.jpg') }}"
+                            style="background: var(--tech-blue); border: none; color: white; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                        <i class="fas fa-shopping-cart me-2"></i>
+                        Agregar al Carrito
+                    </button>
+                                
                             </div>
                         </div>
                     </div>
@@ -466,7 +484,15 @@
                             <h5 class="card-title">PlayStation 5</h5>
                             <p class="card-text text-muted">Consola de nueva generación con gráficos 4K</p>
                             <div class="d-grid">
-                                <button class="btn btn-primary">Agregar al Carrito</button>
+                                
+                            <button class="btn add-to-cart-btn" 
+                            data-product="iPhone 14 Pro Max"
+                            data-price="799"
+                            data-image="{{ asset('img/Play5.jpg') }}"
+                            style="background: var(--tech-blue); border: none; color: white; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                        <i class="fas fa-shopping-cart me-2"></i>
+                        Agregar al Carrito
+                    </button>
                             </div>
                         </div>
                     </div>
