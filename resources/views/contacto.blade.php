@@ -2,12 +2,12 @@
 <html lang="es">
 
 <head>
-    <title>Contacto - TechZone | Tu Tienda de Tecnología</title>
+    <title>TechZone - Tu Tienda de Tecnología</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="assets/img/apple-icon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="img/imagen fondo.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="img/imagen fondo.jpg">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Leaflet CSS for Map -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    
     
     <style>
         :root {
@@ -170,7 +171,7 @@
             font-size: 2rem;
             margin-bottom: 1rem;
         }
-
+      
         /* Footer */
         .footer {
             background: var(--tech-dark);
@@ -227,14 +228,6 @@
             .hero-content p {
                 font-size: 1rem;
             }
-
-            .contact-form {
-                padding: 2rem 1.5rem;
-            }
-
-            #map {
-                height: 300px;
-            }
         }
     </style>
 </head>
@@ -275,7 +268,7 @@
                         <a class="nav-link" href="{{ route('inicio') }}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('productos') }}">Productos</a>
+                        <a class="nav-link active" href="{{ route('productos') }}">Productos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{ route('categorias') }}" role="button" data-bs-toggle="dropdown">
@@ -284,7 +277,6 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Smartphones</a></li>
                             <li><a class="dropdown-item" href="#">Laptops</a></li>
-                            <li><a class="dropdown-item" href="#">Accesorios</a></li>
                             <li><a class="dropdown-item" href="#">Gaming</a></li>
                         </ul>
                     </li>
@@ -292,7 +284,7 @@
                         <a class="nav-link" href="{{ route('ofertas') }}">Ofertas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Contacto</a>
+                        <a class="nav-link" href="{{ route('contacto') }}">Contacto</a>
                     </li>
                 </ul>
                 
@@ -300,10 +292,14 @@
                     <button class="btn btn-link me-3" data-bs-toggle="modal" data-bs-target="#searchModal">
                         <i class="fas fa-search"></i>
                     </button>
-                    <a href="#" class="btn btn-link position-relative me-3">
+
+                    <a href="{{ route('cart.view') }}" class="btn btn-link position-relative me-3">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                        <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ session('cart') ? array_sum(session('cart')) : 0 }}
+                        </span>
                     </a>
+
                     <a href="#" class="btn btn-link">
                         <i class="fas fa-user"></i>
                     </a>
@@ -312,7 +308,7 @@
         </div>
     </nav>
     
-    <!-- Hero Section -->
+       <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
             <div class="row align-items-center">
@@ -374,7 +370,7 @@
             </div>
         </div>
     </section>
-
+    
     <!-- Contact Form & Map Section -->
     <section class="py-5 bg-light">
         <div class="container">
@@ -434,8 +430,10 @@
                         </form>
                     </div>
                 </div>
+           
 
-        <!-- Map Section -->
+            <!-- Map Section -->
+             
     <div class="col-lg-6">
         <div class="h-100">
             <h3 class="mb-4">Nuestra Ubicación</h3>
@@ -480,9 +478,9 @@
                 .openPopup();
         });
     </script>
+    </section>
 
-
-    <!-- Additional Info Section -->
+        <!-- Additional Info Section -->
     <section class="info-section py-5">
         <div class="container">
             <div class="row g-4">
@@ -541,6 +539,7 @@
             </div>
         </div>
     </section>
+    
 
     <!-- Footer -->
     <footer class="footer">
@@ -556,16 +555,16 @@
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4">
+                <div class="col-lg-2 col-md-6 mb-4 footer-links">
                     <h5>Productos</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">Smartphones</a></li>
                         <li><a href="#">Laptops</a></li>
                         <li><a href="#">Gaming</a></li>
-                        <li><a href="#">Accesorios</a></li>
+                        
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4">
+                <div class="col-lg-2 col-md-6 mb-4 footer-links">
                     <h5>Soporte</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">Ayuda</a></li>
@@ -586,31 +585,11 @@
             <hr class="my-4" style="border-color: #333;">
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="col-lg mb-0">&copy; 2024 TechZone. Todos los derechos reservados.</p>
+                    <p class="col-lg mb-4">&copy; 2024 TechZone. Todos los derechos reservados.</p>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title"><i class="fas fa-check-circle me-2"></i>Mensaje Enviado</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body text-center py-4">
-                    <i class="fas fa-check-circle text-success mb-3" style="font-size: 4rem;"></i>
-                    <h4>¡Gracias por contactarnos!</h4>
-                    <p class="text-muted">Hemos recibido tu mensaje y te responderemos lo antes posible, generalmente dentro de las próximas 24 horas.</p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-tech" data-bs-dismiss="modal">Entendido</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Search Modal -->
     <div class="modal fade" id="searchModal" tabindex="-1">
@@ -634,60 +613,8 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
     
     <script>
-        // Initialize Map
-        document.addEventListener('DOMContentLoaded', function() {
-            // Coordenadas de Tegucigalpa, Honduras (Centro Comercial Multiplaza)
-            const lat = 14.0723;
-            const lng = -87.1921;
-            
-            // Inicializar mapa
-            const map = L.map('map').setView([lat, lng], 16);
-            
-            // Agregar tiles del mapa
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-            
-            // Crear icono personalizado
-            const customIcon = L.divIcon({
-                html: '<i class="fas fa-map-marker-alt" style="color: #0066CC; font-size: 2rem;"></i>',
-                className: 'custom-marker',
-                iconSize: [30, 30],
-                iconAnchor: [15, 30]
-            });
-            
-            // Agregar marcador
-            const marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
-            
-            // Popup del marcador
-            marker.bindPopup(`
-                <div class="text-center">
-                    <h6><i class="fas fa-microchip me-2"></i>TechZone</h6>
-                    <p class="mb-1">Centro Comercial Multiplaza</p>
-                    <p class="mb-1">Local 201, Segundo Nivel</p>
-                    <p class="mb-0"><small>Tegucigalpa, Honduras</small></p>
-                </div>
-            `).openPopup();
-        });
-
-        // Form Validation and Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Simulate form submission
-            setTimeout(function() {
-                // Show success modal
-                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                successModal.show();
-                
-                // Reset form
-                document.getElementById('contactForm').reset();
-            }, 1000);
-        });
-
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -716,20 +643,7 @@
             });
         }, observerOptions);
 
-        // Observe cards for animation
-        document.querySelectorAll('.contact-card, .info-card, .contact-form').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Form field focus effects
-        document.querySelectorAll('.form-control').forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.classList.add('focused');
-            });
-            
-            input.addEventListener('blur', function() {
-                if (!this.value) {
-                    this.parentElement.classList.remove('focused');
-                }
-            });
-        });
+       
+    </script>
+</body>
+</html>

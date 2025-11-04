@@ -466,8 +466,35 @@
         .stagger-2 { animation-delay: 0.2s; }
         .stagger-3 { animation-delay: 0.3s; }
         .stagger-4 { animation-delay: 0.4s; }
+        
+        /* Footer */
+        .footer {
+            background: var(--tech-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer h5 {
+            color: var(--tech-accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--tech-accent);
+        }
     </style>
+
+
 </head>
+
+
 
 
 <body>
@@ -993,51 +1020,51 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-5 mt-5">
+      <!-- Footer -->
+    <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
                     <h5><i class="fas fa-microchip me-2"></i>TechZone</h5>
-                    <p class="col-lg mb-4">Tu tienda de confianza para productos tecnológicos de última generación con las mejores ofertas.</p>
+                    <p class="col-lg mb-4">Tu tienda de confianza para productos tecnológicos de última generación.</p>
                     <div class="d-flex">
-                        <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-light"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <h6 class="col-lg mb-4">Productos</h6>
+                <div class="col-lg-2 col-md-6 mb-4 footer-links">
+                    <h5>Productos</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="list-unstyled">Smartphones</a></li>
-                        <li><a href="#" class="list-unstyled">Laptops</a></li>
-                        <li><a href="#" class="list-unstyled">Gaming</a></li>
-                        <li><a href="#" class="list-unstyled">Accesorios</a></li>
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Gaming</a></li>
+                        
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <h6 class="col-lg mb-4">Ofertas</h6>
+                <div class="col-lg-2 col-md-6 mb-4 footer-links">
+                    <h5>Soporte</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="list-unstyled">Flash Sales</a></li>
-                        <li><a href="#" class="list-unstyled">Liquidación</a></li>
-                        <li><a href="#" class="list-unstyled">Fin de Semana</a></li>
-                        <li><a href="#" class="list-unstyled">Cupones</a></li>
+                        <li><a href="#">Ayuda</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                        <li><a href="#">Garantía</a></li>
+                        <li><a href="#">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <h6 class="text-light">Contacto</h6>
+                    <h5>Contacto</h5>
                     <ul class="list-unstyled">
                         <li><i class="fas fa-map-marker-alt me-2"></i>Tegucigalpa, Honduras</li>
                         <li><i class="fas fa-phone me-2"></i>+504 1234-5678</li>
-                        <li><i class="fas fa-envelope me-2"></i>ofertas@techzone.com</li>
+                        <li><i class="fas fa-envelope me-2"></i>info@techzone.com</li>
                     </ul>
                 </div>
             </div>
-            <hr class="my-4">
+            <hr class="my-4" style="border-color: #333;">
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="text-muted mb-0">&copy; 2024 TechZone. Todos los derechos reservados. | Las ofertas son válidas hasta agotar existencias.</p>
+                    <p class="col-lg mb-4">&copy; 2024 TechZone. Todos los derechos reservados.</p>
                 </div>
             </div>
         </div>
