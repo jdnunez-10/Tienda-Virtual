@@ -271,14 +271,9 @@
                         <a class="nav-link active" href="{{ route('productos') }}">Productos</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{{ route('categorias') }}" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link" href="{{ route('categorias') }}" role="button">
                             Categorías
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Smartphones</a></li>
-                            <li><a class="dropdown-item" href="#">Laptops</a></li>
-                            <li><a class="dropdown-item" href="#">Gaming</a></li>
-                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('ofertas') }}">Ofertas</a>

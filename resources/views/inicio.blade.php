@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -15,8 +15,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
+
+     <style>
         :root {
             --tech-blue: #0066CC;
             --tech-dark: #1a1a1a;
@@ -30,7 +30,7 @@
         }
 
         body {
-            line-height: 1.6;
+            background-color: #fafafa;
         }
 
         /* Navigation Styles */
@@ -47,6 +47,32 @@
 
         .nav-link:hover {
             color: var(--tech-blue) !important;
+        }
+
+        
+
+
+        /* Footer */
+        .footer {
+            background: var(--tech-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer h5 {
+            color: var(--tech-accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--tech-accent);
         }
 
         /* Hero Section */
@@ -84,7 +110,7 @@
             transform: translateY(-2px);
             color: var(--tech-dark);
         }
-
+        
         /* Category Cards */
         .category-card {
             background: white;
@@ -107,7 +133,7 @@
             margin-bottom: 1rem;
         }
 
-        /* Product Cards */
+         /* Product Cards */
         .product-card {
             border: none;
             border-radius: 15px;
@@ -186,6 +212,7 @@
                 font-size: 1rem;
             }
         }
+
     </style>
 </head>
 
@@ -228,14 +255,10 @@
                         <a class="nav-link active" href="{{ route('productos') }}">Productos</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{{ route('categorias') }}" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link" href="{{ route('categorias') }}" role="button">
                             Categorías
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Smartphones</a></li>
-                            <li><a class="dropdown-item" href="#">Laptops</a></li>
-                            <li><a class="dropdown-item" href="#">Gaming</a></li>
-                        </ul>
+                     
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('ofertas') }}">Ofertas</a>
@@ -249,14 +272,10 @@
                     <button class="btn btn-link me-3" data-bs-toggle="modal" data-bs-target="#searchModal">
                         <i class="fas fa-search"></i>
                     </button>
-
-                    <a href="{{ route('cart.view') }}" class="btn btn-link position-relative me-3">
+                    <a href="#" class="btn btn-link position-relative me-3">
                         <i class="fas fa-shopping-cart"></i>
-                        <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            {{ session('cart') ? array_sum(session('cart')) : 0 }}
-                        </span>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
                     </a>
-
                     <a href="#" class="btn btn-link">
                         <i class="fas fa-user"></i>
                     </a>
@@ -264,6 +283,7 @@
             </div>
         </div>
     </nav>
+
     
         <!-- Hero Section -->
     <section class="hero-section">
@@ -285,7 +305,7 @@
         </div>
     </section>
 
-             <!-- CSS interno para fondo de la sección -->
+    <!-- CSS interno para fondo de la sección -->
         <head>
     <style>
        .hero-image {
@@ -305,103 +325,90 @@
     </style>
 </head>
 
-        
-    <!-- Categories Section -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h2 class="display-6 fw-bold mb-3">Categorías Populares</h2>
-                    <p class="lead text-muted">Explora nuestra amplia selección de productos tecnológicos</p>
-                </div>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="category-card">
-                         <div class="product-image-container">
-                                    <img src="{{ asset('img/Smartphones.webp') }}" alt="Smartphones" class="product-image" >
-                                 </div>
-                        <h4>Smartphones</h4>
-                        <p class="text-muted">Los últimos modelos de iPhone, Samsung, Huawei y más</p>
-                        <a href="#" class="btn btn-outline-primary">Ver Más</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="category-card">
-                         <div class="product-image-container">
-                                    <img src="{{ asset('img/Laptops.jpg') }}" alt="Laptops" class="product-image" >
-                                 </div>
-                        <h4>Laptops</h4>
-                        <p class="text-muted">Portátiles para trabajo, gaming y uso personal</p>
-                        <a href="#" class="btn btn-outline-primary">Ver Más</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="category-card">
-                        <div class="product-image-container">
-                                    <img src="{{ asset('img/Gaming.jpg') }}" alt="Gaming" class="product-image" >
-                                 </div>
-                        <h4>Gaming</h4>
-                        <p class="text-muted">Consolas, periféricos y accesorios gaming</p>
-                        <a href="#" class="btn btn-outline-primary">Ver Más</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Products -->
-    <section id="products" class="py-5">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h2 class="display-6 fw-bold mb-3">Productos Destacados</h2>
-                    <p class="lead text-muted">Los mejores productos tecnológicos seleccionados para ti</p>
-                </div>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card product-card h-100">
-                        <div class="position-relative">
-                                <div class="product-image-container">
-                                    <img src="{{ asset('img/Iphone.webp') }}" alt="iPhone 14 Pro Max" class="product-image" >
-                                 </div>
-                           
-                            <span class="position-absolute top-0 end-0 m-2 badge bg-danger">-20%</span>
+            <!-- Categories Section -->
+            <section class="py-5 bg-light">
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="display-6 fw-bold mb-3">Categorías Populares</h2>
+                            <p class="lead text-muted">Explora nuestra amplia selección de productos tecnológicos</p>
                         </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
+                    </div>
+                    
+                    <div class="row g-4">
+                        @foreach ($categorias as $categoria)
+                            <div class="col-md-4">
+                                <div class="category-card text-center p-3 bg-white shadow-sm rounded">
+                                    <div class="product-image-container mb-3">
+                                        <img src="{{ asset('img/' . $categoria->imagen_categoria) }}" 
+                                            alt="{{ $categoria->nombre_categoria }}" 
+                                            class="product-image">
+                                    </div>
+                                    <h4>{{ $categoria->nombre_categoria }}</h4>
+                                    <p class="text-muted">{{ $categoria->descripcion }}</p>
+                                    <a href="#" class="btn btn-outline-primary">Ver Más</a>
                                 </div>
-                                <span class="price-tag">$799</span>
                             </div>
-                            <h5 class="card-title">iPhone 14 Pro Max</h5>
-                            <p class="card-text text-muted">Smartphone con cámara profesional y chip A16 Bionic</p>
-                            <div class="d-grid">
-                                <button class="btn add-to-cart-btn" 
-                            data-product="iPhone 14 Pro Max"
-                            data-price="799"
-                            data-image="{{ asset('img/Iphone.webp') }}"
-                            style="background: var(--tech-blue); border: none; color: white; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
-                        <i class="fas fa-shopping-cart me-2"></i>
-                        Agregar al Carrito
-                    </button>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
+            </section>
+                        
+                    <!-- Featured Products -->
+                    <section id="products" class="py-5">
+                        <div class="container">
+                            <div class="row mb-5">
+                                <div class="col-lg-8 mx-auto text-center">
+                                    <h2 class="display-6 fw-bold mb-3">Productos Destacados</h2>
+                                    <p class="lead text-muted">Los mejores productos tecnológicos seleccionados para ti</p>
+                                </div>
+                            </div>
 
-                <head>
-                    <style>
-                      
-                        .product-image-container {
+                            <div class="row g-4">
+                                @foreach ($productos as $producto)
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="card product-card h-100">
+                                            <div class="position-relative">
+                                                <div class="product-image-container">
+                                                    <img src="{{ asset('img/' . $producto->imagen_producto) }}" 
+                                                        alt="{{ $producto->nombre_producto }}" 
+                                                        class="product-image">
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <div class="rating">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </div>
+                                                    <span class="price-tag">${{ number_format($producto->precio, 2) }}</span>
+                                                </div>
+                                                <h5 class="card-title">{{ $producto->nombre_producto }}</h5>
+                                                <p class="card-text text-muted">Cantidad disponible: {{ $producto->cantidad }}</p>
+                                                <div class="d-grid">
+                                                    <button class="btn add-to-cart-btn" 
+                                                            data-product="{{ $producto->nombre_producto }}"
+                                                            data-price="{{ $producto->precio }}"
+                                                            data-image="{{ asset('img/' . $producto->imagen_producto) }}"
+                                                            style="background: var(--tech-blue); border: none; color: white; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                                                        <i class="fas fa-shopping-cart me-2"></i>
+                                                        Agregar al Carrito
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </section>
+
+                   <style>
+                    .product-image-container {
                         height: 250px;
                         background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
                         display: flex;
@@ -411,97 +418,18 @@
                         border-radius: 8px 8px 0 0;
                         position: relative;
                     }
-
                     .product-image {
                         width: 100%;
                         height: 100%;
                         object-fit: contain;
                         padding: 20px;
                         transition: transform 0.3s ease;
-                        background: transparent;
                     }
-
-                    /* Efecto hover para la imagen */
                     .product-card:hover .product-image {
                         transform: scale(1.05);
                     }
                     </style>
-                </head>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="card product-card h-100">
-                        <div class="position-relative">
-                            <div class="product-image-container">
-                                    <img src="{{ asset('img/MacBook Air.jpg') }}" alt="MacBook Air" class="product-image" >
-                                 </div>
-                            <span class="position-absolute top-0 end-0 m-2 badge bg-success">Nuevo</span>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <span class="price-tag">$1,299</span>
-                            </div>
-                            <h5 class="card-title">MacBook Air M2</h5>
-                            <p class="card-text text-muted">Laptop ultradelgada con SSD de 256 GB y 8GB RAM</p>
-                            <div class="d-grid">
-
-                             <button class="btn add-to-cart-btn" 
-                            data-product="iPhone 14 Pro Max"
-                            data-price="799"
-                            data-image="{{ asset('img/MacBook Air.jpg') }}"
-                            style="background: var(--tech-blue); border: none; color: white; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
-                        <i class="fas fa-shopping-cart me-2"></i>
-                        Agregar al Carrito
-                    </button>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="card product-card h-100">
-                        <div class="position-relative">
-                             <div class="product-image-container">
-                                    <img src="{{ asset('img/Play5.jpg') }}" alt="PlayStation 5" class="product-image" >
-                                 </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <span class="price-tag">$499</span>
-                            </div>
-                            <h5 class="card-title">PlayStation 5</h5>
-                            <p class="card-text text-muted">Consola de nueva generación con gráficos 4K</p>
-                            <div class="d-grid">
-                                
-                            <button class="btn add-to-cart-btn" 
-                            data-product="iPhone 14 Pro Max"
-                            data-price="799"
-                            data-image="{{ asset('img/Play5.jpg') }}"
-                            style="background: var(--tech-blue); border: none; color: white; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
-                        <i class="fas fa-shopping-cart me-2"></i>
-                        Agregar al Carrito
-                    </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Newsletter Section -->
     <section class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
@@ -573,59 +501,6 @@
         </div>
     </footer>
 
-    <!-- Search Modal -->
-    <div class="modal fade" id="searchModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Buscar Productos</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="¿Qué estás buscando?">
-                        <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                }
-            });
-        }, observerOptions);
-
-       
-    </script>
 </body>
 </html>

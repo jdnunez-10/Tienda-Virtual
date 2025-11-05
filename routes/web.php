@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\OfertasController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\CartController;
+use App\Models\Categoria;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,6 +15,13 @@ Route::get('/', function () {
 
 Route::get('/inicio', 
 [InicioController::class, 'inicio'])->name('inicio');
+
+Route::get('/', 
+[CategoriasController::class, 'mostrarCategorias'])->name('mostrarCategorias');
+
+Route::get('/', 
+[ProductosController::class, 'mostrarProductos'])->name('mostrarProductos');
+
 
 
 Route::get('/productos', 
@@ -62,5 +70,5 @@ Route::prefix('cart')->name('cart.')->group(function () {
     Route::get('/payment-success', 
     [CartController::class, 'paymentSuccess'])->name('pago-exitoso');
 
-
+    
 });

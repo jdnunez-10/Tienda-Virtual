@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use App\Models\Cart;
+use App\Models\Categoria;
+use App\Models\Producto;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -22,6 +24,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+
+        View::composer('*', function ($view) {
+        $view->with('categorias', Categoria::all());
+    });
+
+           View::composer('*', function ($view) {
+        $view->with('productos', Producto::all());
+    });
 
         Schema::defaultStringLength(191);
 
