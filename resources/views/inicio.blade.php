@@ -365,7 +365,7 @@
                             </div>
 
                             <div class="row g-4">
-                                @foreach ($productos as $producto)
+                                @foreach ($productosDestacados as $producto)
                                     <div class="col-lg-4 col-md-6">
                                         <div class="card product-card h-100">
                                             <div class="position-relative">

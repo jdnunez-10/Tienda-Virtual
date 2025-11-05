@@ -18,15 +18,17 @@ class Producto extends Model
         'id_producto',
         'nombre_producto',
         'imagen_producto',
+        'descripcion_',
         'precio',
         'cantidad',
-        'total'
+        'total',
+        'destacado'
     ];
 
     // Relación con categorías (opcional)
     public function categoria()
     {
-        return $this->belongsTo(Categoria::class, 'id');
+        return $this->belongsTo(Categoria::class, 'categoria_id');
     }
 
 }

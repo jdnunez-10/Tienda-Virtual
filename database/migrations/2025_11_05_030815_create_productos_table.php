@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('id_producto')->primary();
             $table->string('nombre_producto');
             $table->string('imagen_producto')->nullable();
+            $table->text('descripcion_')->nullable();
             $table->decimal('precio', 10, 2);
             $table->integer('cantidad');
             $table->decimal('total', 10, 2);

@@ -421,516 +421,166 @@
         </nav>
     </div>
 
-    <!-- Main Content -->
-    <div class="container py-4">
-        <div class="row">
-            <!-- Mobile Filter Button -->
-            <div class="col-12 mobile-filters mb-4">
-                <button class="btn btn-outline-primary w-100" data-bs-toggle="offcanvas" data-bs-target="#mobileFilters">
-                    <i class="fas fa-filter me-2"></i>Filtros
-                </button>
-            </div>
-
-            <!-- Desktop Filters Sidebar -->
-            <div class="col-lg-3 desktop-filters">
-                <div class="filter-sidebar">
-                    <h5 class="filter-title">
+            <!-- Main Content -->
+        <div class="container py-4">
+            <div class="row">
+                <!-- Mobile Filter Button -->
+                <div class="col-12 mobile-filters mb-4">
+                    <button class="btn btn-outline-primary w-100" data-bs-toggle="offcanvas" data-bs-target="#mobileFilters">
                         <i class="fas fa-filter me-2"></i>Filtros
-                    </h5>
-
-                    <!-- Category Filter -->
-                    <div class="filter-section">
-                        <h6 class="filter-title">Categorías</h6>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="smartphones">
-                            <label class="form-check-label" for="smartphones">
-                                Smartphones <span class="text-muted">(24)</span>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="laptops">
-                            <label class="form-check-label" for="laptops">
-                                Laptops <span class="text-muted">(18)</span>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gaming">
-                            <label class="form-check-label" for="gaming">
-                                Gaming <span class="text-muted">(12)</span>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="accesorios">
-                            <label class="form-check-label" for="accesorios">
-                                Accesorios <span class="text-muted">(35)</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Price Filter -->
-                    <div class="filter-section">
-                        <h6 class="filter-title">Rango de Precio</h6>
-                        <div class="price-range">
-                            <div class="row g-2">
-                                <div class="col-6">
-                                    <input type="number" class="form-control" placeholder="Min" id="minPrice">
-                                </div>
-                                <div class="col-6">
-                                    <input type="number" class="form-control" placeholder="Max" id="maxPrice">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-check mt-3">
-                            <input class="form-check-input" type="checkbox" id="enOferta">
-                            <label class="form-check-label" for="enOferta">
-                                Solo en oferta
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Brand Filter -->
-                    <div class="filter-section">
-                        <h6 class="filter-title">Marcas</h6>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="apple">
-                            <label class="form-check-label" for="apple">Apple</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="samsung">
-                            <label class="form-check-label" for="samsung">Samsung</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="sony">
-                            <label class="form-check-label" for="sony">Sony</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="asus">
-                            <label class="form-check-label" for="asus">ASUS</label>
-                        </div>
-                    </div>
-
-                    <button class="btn btn-primary w-100 mb-3">Aplicar Filtros</button>
-                    <button class="btn btn-outline-secondary w-100">Limpiar Filtros</button>
+                    </button>
                 </div>
-            </div>
 
-            <!-- Products Grid -->
-            <div class="col-lg-9">
-                <!-- Products Header -->
-                <div class="products-header">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <h4 class="mb-0">Productos Tecnológicos</h4>
-                            <p class="text-muted mb-0">Mostrando 1-12 de 89 productos</p>
+                <!-- Desktop Filters Sidebar -->
+                <div class="col-lg-3 desktop-filters">
+                    <div class="filter-sidebar">
+                        <h5 class="filter-title"><i class="fas fa-filter me-2"></i>Filtros</h5>
+
+                        <!-- Category Filter -->
+                        <div class="filter-section">
+                            <h6 class="filter-title">Categorías</h6>
+
+                            @foreach($categorias as $categoria)
+                                <div class="form-check">
+                                    <input class="form-check-input" 
+                                        type="checkbox" 
+                                        id="categoria_{{ $categoria->id }}" 
+                                        name="categorias[]" 
+                                        value="{{ $categoria->id }}">
+                                    <label class="form-check-label" for="categoria_{{ $categoria->id }}">
+                                        {{ $categoria->nombre_categoria }} 
+                                        <span class="text-muted">({{ $categoria->productos->count() }})</span>
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="col-md-6">
-                            <div class="d-flex justify-content-md-end justify-content-start mt-3 mt-md-0">
-                                <div class="d-flex align-items-center gap-3">
-                                    <label class="form-label mb-0">Ordenar por:</label>
-                                    <select class="form-select" style="width: auto;">
-                                        <option>Más Popular</option>
-                                        <option>Precio: Menor a Mayor</option>
-                                        <option>Precio: Mayor a Menor</option>
-                                        <option>Más Nuevo</option>
-                                        <option>Mejor Valorado</option>
-                                    </select>
-                                    <div class="btn-group">
-                                        <button class="btn btn-outline-secondary active" title="Vista en cuadrícula">
-                                            <i class="fas fa-th"></i>
-                                        </button>
-                                        <button class="btn btn-outline-secondary" title="Vista en lista">
-                                            <i class="fas fa-list"></i>
-                                        </button>
+
+                        <!-- Price Filter -->
+                        <div class="filter-section">
+                            <h6 class="filter-title">Rango de Precio</h6>
+                            <div class="price-range">
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <input type="number" class="form-control" placeholder="Min" id="minPrice">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="number" class="form-control" placeholder="Max" id="maxPrice">
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" id="enOferta">
+                                <label class="form-check-label" for="enOferta">Solo en oferta</label>
+                            </div>
                         </div>
+
+                        <!-- Brand Filter -->
+                        <div class="filter-section">
+                            <h6 class="filter-title">Marcas</h6>
+                            @foreach(['Apple', 'Samsung', 'Sony', 'ASUS'] as $marca)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="marca_{{ strtolower($marca) }}">
+                                    <label class="form-check-label" for="marca_{{ strtolower($marca) }}">{{ $marca }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <button class="btn btn-primary w-100 mb-3">Aplicar Filtros</button>
+                        <button class="btn btn-outline-secondary w-100">Limpiar Filtros</button>
                     </div>
                 </div>
 
                 <!-- Products Grid -->
-                <div class="row g-4" id="productsGrid">
-                    <!-- Producto 1 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card product-card">
-                            <div class="product-image-container">
-                                <div style="height: 280px; background: linear-gradient(45deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-mobile-alt text-white" style="font-size: 4rem;"></i>
-                                </div>
-                                <button class="wishlist-btn">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                                <div class="product-badge">
-                                    <span class="badge bg-danger">-20%</span>
-                                </div>
+                <div class="col-lg-9">
+                    <div class="products-header">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h4 class="mb-0">Productos Tecnológicos</h4>
+                                <p class="text-muted mb-0">
+                                    Mostrando {{ count($productos) }} productos
+                                </p>
                             </div>
-                            <div class="product-info">
-                                <div class="product-category">Smartphones</div>
-                                <h5 class="product-title">iPhone 14 Pro Max</h5>
-                                <p class="product-description">Smartphone premium con cámara profesional, chip A16 Bionic y pantalla ProMotion de 6.7"</p>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                            <div class="col-md-6">
+                                <div class="d-flex justify-content-md-end justify-content-start mt-3 mt-md-0">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <label class="form-label mb-0">Ordenar por:</label>
+                                        <select class="form-select" style="width: auto;">
+                                            <option>Más Popular</option>
+                                            <option>Precio: Menor a Mayor</option>
+                                            <option>Precio: Mayor a Menor</option>
+                                            <option>Más Nuevo</option>
+                                            <option>Mejor Valorado</option>
+                                        </select>
+                                        <div class="btn-group">
+                                            <button class="btn btn-outline-secondary active" title="Vista en cuadrícula">
+                                                <i class="fas fa-th"></i>
+                                            </button>
+                                            <button class="btn btn-outline-secondary" title="Vista en lista">
+                                                <i class="fas fa-list"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <span class="rating-count">(127 reseñas)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current-price">$999</span>
-                                    <span class="original-price">$1,249</span>
-                                    <span class="discount">20%</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn btn-add-cart">
-                                        <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                    </button>
-                                    <button class="btn btn-quick-view">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Producto 2 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card product-card">
-                            <div class="product-image-container">
-                                <div style="height: 280px; background: linear-gradient(45deg, #f093fb, #f5576c); display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-laptop text-white" style="font-size: 4rem;"></i>
-                                </div>
-                                <button class="wishlist-btn">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                                <div class="product-badge">
-                                    <span class="badge bg-success">Nuevo</span>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Laptops</div>
-                                <h5 class="product-title">MacBook Air M2</h5>
-                                <p class="product-description">Laptop ultradelgada con chip M2, 8GB RAM, SSD 256GB y pantalla Retina de 13.6"</p>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <span class="rating-count">(89 reseñas)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current-price">$1,199</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn btn-add-cart">
-                                        <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                    </button>
-                                    <button class="btn btn-quick-view">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Products Grid -->
+                    <div class="row g-4" id="productsGrid">
+                        @foreach($productos as $producto)
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card product-card">
+                                    <div class="product-image-container">
+                                        <img src="{{ asset('img/' . $producto->imagen_producto) }}" 
+                                            alt="{{ $producto->nombre_producto }}" 
+                                            style="height: 280px; width: 100%; object-fit: cover; border-radius: 8px;">
+                                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
 
-                    <!-- Producto 3 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card product-card">
-                            <div class="product-image-container">
-                                <div style="height: 280px; background: linear-gradient(45deg, #4facfe, #00f2fe); display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-gamepad text-white" style="font-size: 4rem;"></i>
-                                </div>
-                                <button class="wishlist-btn">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Gaming</div>
-                                <h5 class="product-title">PlayStation 5</h5>
-                                <p class="product-description">Consola de nueva generación con SSD ultra rápido y gráficos 4K ray tracing</p>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                                        @if($producto->descuento)
+                                            <div class="product-badge">
+                                                <span class="badge bg-danger">-{{ $producto->descuento }}%</span>
+                                            </div>
+                                        @endif
                                     </div>
-                                    <span class="rating-count">(203 reseñas)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current-price">$499</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn btn-add-cart">
-                                        <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                    </button>
-                                    <button class="btn btn-quick-view">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Producto 4 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card product-card">
-                            <div class="product-image-container">
-                                <div style="height: 280px; background: linear-gradient(45deg, #fa709a, #fee140); display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-headphones text-white" style="font-size: 4rem;"></i>
-                                </div>
-                                <button class="wishlist-btn">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                                <div class="product-badge">
-                                    <span class="badge bg-warning">Agotándose</span>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Accesorios</div>
-                                <h5 class="product-title">AirPods Pro 2</h5>
-                                <p class="product-description">Auriculares inalámbricos con cancelación activa de ruido y audio espacial</p>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <span class="rating-count">(156 reseñas)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current-price">$249</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn btn-add-cart">
-                                        <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                    </button>
-                                    <button class="btn btn-quick-view">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                    <div class="product-info">
+                                        <div class="product-category">{{ $producto->categoria->nombre_categoria ?? 'Sin categoría' }}</div>
+                                        <h5 class="product-title">{{ $producto->nombre_producto }}</h5>
+                                        <p class="product-description">{{ $producto->descripcion_producto }}</p>
 
-                    <!-- Producto 5 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card product-card">
-                            <div class="product-image-container">
-                                <div style="height: 280px; background: linear-gradient(45deg, #a8edea, #fed6e3); display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-tablet-alt text-dark" style="font-size: 4rem;"></i>
-                                </div>
-                                <button class="wishlist-btn">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Tablets</div>
-                                <h5 class="product-title">iPad Air 5</h5>
-                                <p class="product-description">Tablet con chip M1, pantalla Liquid Retina de 10.9" y compatibilidad con Apple Pencil</p>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="rating-count">(94 reseñas)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current-price">$599</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn btn-add-cart">
-                                        <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                    </button>
-                                    <button class="btn btn-quick-view">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                        <div class="product-rating">
+                                            <div class="stars">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                            <span class="rating-count">( {{ rand(20,200) }} reseñas )</span>
+                                        </div>
 
-                    <!-- Producto 6 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card product-card">
-                            <div class="product-image-container">
-                                <div style="height: 280px; background: linear-gradient(45deg, #ff9a9e, #fecfef); display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-desktop text-dark" style="font-size: 4rem;"></i>
-                                </div>
-                                <button class="wishlist-btn">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                                <div class="product-badge">
-                                    <span class="badge bg-info">Bestseller</span>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Monitores</div>
-                                <h5 class="product-title">Monitor Gaming 4K</h5>
-                                <p class="product-description">Monitor 27" 4K HDR con 144Hz, ideal para gaming profesional y diseño</p>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <span class="rating-count">(78 reseñas)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current-price">$449</span>
-                                    <span class="original-price">$529</span>
-                                    <span class="discount">15%</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn btn-add-cart">
-                                        <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                    </button>
-                                    <button class="btn btn-quick-view">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                        <div class="product-price">
+                                            <span class="current-price">${{ number_format($producto->precio, 2) }}</span>
+                                        </div>
 
-                    <!-- Producto 7 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card product-card">
-                            <div class="product-image-container">
-                                <div style="height: 280px; background: linear-gradient(45deg, #ffecd2, #fcb69f); display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-camera text-dark" style="font-size: 4rem;"></i>
-                                </div>
-                                <button class="wishlist-btn">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Cámaras</div>
-                                <h5 class="product-title">Canon EOS R6</h5>
-                                <p class="product-description">Cámara mirrorless profesional con sensor full-frame y grabación 4K</p>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                                        <div class="product-actions">
+                                            <button class="btn btn-add-cart">
+                                                <i class="fas fa-shopping-cart me-2"></i>Agregar
+                                            </button>
+                                            <button class="btn btn-quick-view">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <span class="rating-count">(142 reseñas)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current-price">$2,499</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn btn-add-cart">
-                                        <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                    </button>
-                                    <button class="btn btn-quick-view">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Producto 8 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card product-card">
-                            <div class="product-image-container">
-                                <div style="height: 280px; background: linear-gradient(45deg, #a18cd1, #fbc2eb); display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-keyboard text-white" style="font-size: 4rem;"></i>
-                                </div>
-                                <button class="wishlist-btn">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                                <div class="product-badge">
-                                    <span class="badge bg-danger">-30%</span>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Periféricos</div>
-                                <h5 class="product-title">Teclado Mecánico RGB</h5>
-                                <p class="product-description">Teclado gaming mecánico con switches Cherry MX, RGB personalizable</p>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <span class="rating-count">(95 reseñas)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current-price">$89</span>
-                                    <span class="original-price">$129</span>
-                                    <span class="discount">30%</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn btn-add-cart">
-                                        <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                    </button>
-                                    <button class="btn btn-quick-view">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Producto 9 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card product-card">
-                            <div class="product-image-container">
-                                <div style="height: 280px; background: linear-gradient(45deg, #84fab0, #8fd3f4); display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-mouse text-white" style="font-size: 4rem;"></i>
-                                </div>
-                                <button class="wishlist-btn">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Periféricos</div>
-                                <h5 class="product-title">Mouse Gaming Pro</h5>
-                                <p class="product-description">Mouse gaming inalámbrico con sensor óptico de 25,600 DPI y 11 botones</p>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="rating-count">(167 reseñas)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current-price">$79</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn btn-add-cart">
-                                        <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                    </button>
-                                    <button class="btn btn-quick-view">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
+            </div>
+        </div>
+
+
 
                 <!-- Load More Button -->
                 <div class="text-center mt-5">

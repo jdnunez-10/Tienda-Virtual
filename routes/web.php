@@ -19,9 +19,11 @@ Route::get('/inicio',
 Route::get('/', 
 [CategoriasController::class, 'mostrarCategorias'])->name('mostrarCategorias');
 
-Route::get('/', 
-[ProductosController::class, 'mostrarProductos'])->name('mostrarProductos');
+Route::get('/inicio', 
+[ProductosController::class, 'mostrarProductosDestacados'])->name('inicio');
 
+Route::get('/productos', 
+[ProductosController::class, 'mostrarEnProductos'])->name('mostrarEnProductos');
 
 
 Route::get('/productos', 
