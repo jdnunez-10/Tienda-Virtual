@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\OfertasController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\CartController;
+
 use App\Models\Categoria;
 
 Route::get('/', function () {
@@ -23,7 +24,7 @@ Route::get('/inicio',
 [ProductosController::class, 'mostrarProductosDestacados'])->name('inicio');
 
 Route::get('/productos', 
-[ProductosController::class, 'mostrarEnProductos'])->name('mostrarEnProductos');
+[ProductosController::class, 'mostrarEnProductos'])->name('productos');
 
 
 Route::get('/productos', 
@@ -32,14 +33,25 @@ Route::get('/productos',
 Route::get('/categorias', 
 [CategoriasController::class, 'categorias'])->name('categorias');
 
+Route::get('/categorias', 
+[CategoriasController::class, 'mostrarCategoriasEnCategorias'])->name('categorias');
+
 Route::get('/ofertas', 
 [OfertasController::class, 'ofertas'])->name('ofertas');
+
+
+Route::get('/ofertas', 
+[OfertasController::class, 'mostrarOfertas'])->name('ofertas');
+
 
 Route::get('/contacto', 
 [ContactoController::class, 'contacto'])->name('contacto');
 
 
 //RUTAS DEL CARRITO
+
+    Route::get('/carrito', 
+    [CartController::class, 'carrito'])->name('carrito');
 
 Route::prefix('cart')->name('cart.')->group(function () {
     Route::post('/add', 

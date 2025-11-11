@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categoria;
+
 class ProductosController extends Controller
 {
     //
@@ -17,7 +18,7 @@ class ProductosController extends Controller
 
     public function mostrarProductosDestacados()
     {
-       $productosDestacados = Producto::where('destacado', true)->get();
+       $productosDestacados = Producto::where('destacado', true)->paginate(6);
        $categorias = Categoria::all();
 
         return view('inicio', compact('productosDestacados', 'categorias'));
@@ -26,17 +27,16 @@ class ProductosController extends Controller
 
         public function mostrarEnProductos()
     {
-        $productos = Producto::with('categoria')->get();
-    $categorias = Categoria::all();
-    $productosDestacados = Producto::where('destacado', true)->take(6)->get();
+        $productos = Producto::with('categoria')->paginate(6);
+        $categorias = Categoria::withCount('productos')->get();
 
-    return view('productos.index', compact('productos', 'categorias', 'productosDestacados'));
+        return view('productos', compact('productos', 'categorias'));
     }
 
     public function mostrarCategorias()
 {
-    $categorias = Categoria::withCount('productos')->get();
-    $productos = Producto::all();
+    $categorias = Categoria::withCount('productos')->paginate(6);
+    $productos = Producto::paginate(6);
 
     return view('productos', compact('categorias', 'productos'));
 }

@@ -19,4 +19,10 @@ class CategoriasController extends Controller
 
         return view('inicio', 'productos', compact('categorias'));
     }
+
+    public function mostrarCategoriasEnCategorias()
+{
+    $categorias = Categoria::withCount('productos')->get();
+    return view('categorias', compact('categorias'));
+}
 }

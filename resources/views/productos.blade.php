@@ -578,129 +578,39 @@
                     </div>
                 </div>
             </div>
-        </div>
 
 
+             </div>
+            
+            <!--pagination-->
+             <nav aria-label="Navegación de productos" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {{-- Botón anterior --}}
+                @if ($productos->onFirstPage())
+                    <li class="page-item disabled"><span class="page-link">Anterior</span></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{ $productos->previousPageUrl() }}">Anterior</a></li>
+                @endif
 
-                <!-- Load More Button -->
-                <div class="text-center mt-5">
-                    <button class="btn btn-outline-primary btn-lg" id="loadMoreBtn">
-                        <span class="btn-text">Cargar Más Productos</span>
-                        <span class="loading d-none"></span>
-                    </button>
-                </div>
+                {{-- Números de página --}}
+                @foreach ($productos->getUrlRange(1, $productos->lastPage()) as $page => $url)
+                    @if ($page == $productos->currentPage())
+                        <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
+                    @else
+                        <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
+                    @endif
+                @endforeach
 
-                <!-- Pagination -->
-                <nav class="mt-5" aria-label="Paginación de productos">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <span class="page-link">...</span>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">8</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Siguiente</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+                {{-- Botón siguiente --}}
+                @if ($productos->hasMorePages())
+                    <li class="page-item"><a class="page-link" href="{{ $productos->nextPageUrl() }}">Siguiente</a></li>
+                @else
+                    <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+                @endif
+            </ul>
+        </nav>
 
-    <!-- Mobile Filters Offcanvas -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileFilters">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title">
-                <i class="fas fa-filter me-2"></i>Filtros
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="filter-sidebar">
-                <!-- Category Filter -->
-                <div class="filter-section">
-                    <h6 class="filter-title">Categorías</h6>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="smartphones-mobile">
-                        <label class="form-check-label" for="smartphones-mobile">
-                            Smartphones <span class="text-muted">(24)</span>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="laptops-mobile">
-                        <label class="form-check-label" for="laptops-mobile">
-                            Laptops <span class="text-muted">(18)</span>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gaming-mobile">
-                        <label class="form-check-label" for="gaming-mobile">
-                            Gaming <span class="text-muted">(12)</span>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="accesorios-mobile">
-                        <label class="form-check-label" for="accesorios-mobile">
-                            Accesorios <span class="text-muted">(35)</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Price Filter -->
-                <div class="filter-section">
-                    <h6 class="filter-title">Rango de Precio</h6>
-                    <div class="price-range">
-                        <div class="row g-2">
-                            <div class="col-6">
-                                <input type="number" class="form-control" placeholder="Min" id="minPrice-mobile">
-                            </div>
-                            <div class="col-6">
-                                <input type="number" class="form-control" placeholder="Max" id="maxPrice-mobile">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Brand Filter -->
-                <div class="filter-section">
-                    <h6 class="filter-title">Marcas</h6>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="apple-mobile">
-                        <label class="form-check-label" for="apple-mobile">Apple</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="samsung-mobile">
-                        <label class="form-check-label" for="samsung-mobile">Samsung</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="sony-mobile">
-                        <label class="form-check-label" for="sony-mobile">Sony</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="asus-mobile">
-                        <label class="form-check-label" for="asus-mobile">ASUS</label>
-                    </div>
-                </div>
-
-                <button class="btn btn-primary w-100 mb-3">Aplicar Filtros</button>
-                <button class="btn btn-outline-secondary w-100">Limpiar Filtros</button>
-            </div>
-        </div>
-    </div>
-
+                             
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -721,7 +631,6 @@
                         <li><a href="#">Smartphones</a></li>
                         <li><a href="#">Laptops</a></li>
                         <li><a href="#">Gaming</a></li>
-                        <li><a href="#">Accesorios</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 mb-4">

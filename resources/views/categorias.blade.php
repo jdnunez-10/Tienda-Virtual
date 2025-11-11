@@ -360,6 +360,29 @@
             }
         }
 
+         /* Footer */
+        .footer {
+            background: var(--tech-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer h5 {
+            color: var(--tech-accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--tech-accent);
+        }
+
         /* Animation */
         @keyframes fadeInUp {
             from {
@@ -384,7 +407,8 @@
 </head>
 
 <body>
-    <!-- Top Navigation -->
+    
+<!-- Top Navigation -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2">
         <div class="container">
             <div class="d-flex justify-content-between w-100">
@@ -480,286 +504,114 @@
         </div>
     </div>
 
-    <!-- Featured Categories -->
-    <div class="container">
-        <div class="featured-categories fade-in-up stagger-3">
-            <div class="featured-title">
-                <h2>Categorías Más Populares</h2>
-                <p class="text-muted">Las categorías más buscadas por nuestros clientes</p>
-            </div>
-            <div class="featured-categories-grid">
-                <div class="featured-card">
+    <!-- Categorías Populares -->
+<div class="container">
+    <div class="featured-categories fade-in-up stagger-3">
+        <div class="featured-title">
+            <h2>Categorías Más Populares</h2>
+            <p class="text-muted">Las categorías más buscadas por nuestros clientes</p>
+        </div>
+
+        <div class="featured-categories-grid">
+            @foreach($categorias->take(4) as $categoria)
+                <div class="featured-card" >
                     <div class="featured-icon">
-                        <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h4>Smartphones</h4>
-                    <p>45 productos</p>
+                    <h4>{{ $categoria->nombre_categoria }}</h4>
+                    <p>{{ $categoria->productos_count }} productos</p>
                 </div>
-                <div class="featured-card blue">
-                    <div class="featured-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h4>Laptops</h4>
-                    <p>32 productos</p>
-                </div>
-                <div class="featured-card green">
-                    <div class="featured-icon">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h4>Gaming</h4>
-                    <p>28 productos</p>
-                </div>
-                <div class="featured-card orange">
-                    <div class="featured-icon">
-                        <i class="fas fa-headphones"></i>
-                    </div>
-                    <h4>Audio</h4>
-                    <p>56 productos</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
+</div>
 
-    <!-- Main Categories Grid -->
-    <div class="container">
-        <div class="category-grid" id="categoriesGrid">
-            <!-- Smartphones -->
-            <div class="category-card fade-in-up stagger-1">
-                <div class="category-header">
-                    <div class="category-gradient" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <i class="fas fa-mobile-alt category-icon"></i>
-                    </div>
-                    <div class="category-overlay">
-                        <i class="fas fa-eye text-white" style="font-size: 2rem;"></i>
-                    </div>
-                    <div class="category-badge">45 productos</div>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">Smartphones</h3>
-                    <p class="category-description">Los últimos modelos de teléfonos inteligentes con tecnología de vanguardia. iPhone, Samsung, Huawei y más marcas premium.</p>
-                    <div class="category-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">45</div>
-                            <div class="stat-label">Productos</div>
+<!-- Grid principal de categorías -->
+        <div class="container">
+            <div class="category-grid" id="categoriesGrid">
+                @foreach($categorias as $categoria)
+                    <div class="category-card fade-in-up">
+                        <div class="category-header">
+                            <div class="category-gradient"
+>
+                            
+                            </div>
+                            <div class="category-overlay">
+                                <i class="fas fa-eye text-white" style="font-size: 2rem;"></i>
+                            </div>
+                            <div class="category-badge">{{ $categoria->productos_count }} productos</div>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-number">8</div>
-                            <div class="stat-label">Marcas</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">4.8</div>
-                            <div class="stat-label">Rating</div>
+
+                        <div class="category-content">
+                            <h3 class="category-title">{{ $categoria->nombre_categoria }}</h3>
+                            <p class="category-description">Explora nuestra selección de {{ strtolower($categoria->nombre_categoria) }} disponibles.</p>
+
+                            <div class="category-actions">
+                                <a href="{{ route('productos', $categoria->id) }}" class="btn btn-explore">
+                                    <i class="fas fa-arrow-right me-2"></i>Explorar
+                                </a>
+                                <button class="btn btn-wishlist">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="category-actions">
-                        <button class="btn btn-explore">
-                            <i class="fas fa-arrow-right me-2"></i>Explorar
-                        </button>
-                        <button class="btn btn-wishlist">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
+                @endforeach
             </div>
-
-            <!-- Laptops -->
-            <div class="category-card fade-in-up stagger-2">
-                <div class="category-header">
-                    <div class="category-gradient" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        <i class="fas fa-laptop category-icon"></i>
-                    </div>
-                    <div class="category-overlay">
-                        <i class="fas fa-eye text-white" style="font-size: 2rem;"></i>
-                    </div>
-                    <div class="category-badge">32 productos</div>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">Laptops</h3>
-                    <p class="category-description">Portátiles para trabajo, gaming y uso personal. Desde ultrabooks hasta estaciones de trabajo potentes.</p>
-                    <div class="category-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">32</div>
-                            <div class="stat-label">Productos</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">6</div>
-                            <div class="stat-label">Marcas</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">4.7</div>
-                            <div class="stat-label">Rating</div>
-                        </div>
-                    </div>
-                    <div class="category-actions">
-                        <button class="btn btn-explore">
-                            <i class="fas fa-arrow-right me-2"></i>Explorar
-                        </button>
-                        <button class="btn btn-wishlist">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Gaming -->
-            <div class="category-card fade-in-up stagger-3">
-                <div class="category-header">
-                    <div class="category-gradient" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                        <i class="fas fa-gamepad category-icon"></i>
-                    </div>
-                    <div class="category-overlay">
-                        <i class="fas fa-eye text-white" style="font-size: 2rem;"></i>
-                    </div>
-                    <div class="category-badge">28 productos</div>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">Gaming</h3>
-                    <p class="category-description">Consolas, accesorios y periféricos gaming. PlayStation, Xbox, Nintendo Switch y equipos para PC gaming.</p>
-                    <div class="category-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">28</div>
-                            <div class="stat-label">Productos</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">5</div>
-                            <div class="stat-label">Marcas</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">4.9</div>
-                            <div class="stat-label">Rating</div>
-                        </div>
-                    </div>
-                    <div class="category-actions">
-                        <button class="btn btn-explore">
-                            <i class="fas fa-arrow-right me-2"></i>Explorar
-                        </button>
-                        <button class="btn btn-wishlist">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Audio -->
-            <div class="category-card fade-in-up stagger-4">
-                <div class="category-header">
-                    <div class="category-gradient" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                        <i class="fas fa-headphones category-icon"></i>
-                    </div>
-                    <div class="category-overlay">
-                        <i class="fas fa-eye text-white" style="font-size: 2rem;"></i>
-                    </div>
-                    <div class="category-badge">56 productos</div>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">Audio</h3>
-                    <p class="category-description">Auriculares, altavoces y sistemas de audio premium. Desde AirPods hasta sistemas de sonido profesional.</p>
-                    <div class="category-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">56</div>
-                            <div class="stat-label">Productos</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">12</div>
-                            <div class="stat-label">Marcas</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">4.6</div>
-                            <div class="stat-label">Rating</div>
-                        </div>
-                    </div>
-                    <div class="category-actions">
-                        <button class="btn btn-explore">
-                            <i class="fas fa-arrow-right me-2"></i>Explorar
-                        </button>
-                        <button class="btn btn-wishlist">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tablets -->
-            <div class="category-card fade-in-up stagger-1">
-                <div class="category-header">
-                    <div class="category-gradient" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-                        <i class="fas fa-tablet-alt category-icon" style="color: var(--tech-dark);"></i>
-                    </div>
-                    <div class="category-overlay">
-                        <i class="fas fa-eye text-dark" style="font-size: 2rem;"></i>
-                    </div>
-                    <div class="category-badge">18 productos</div>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">Tablets</h3>
-                    <p class="category-description">Tablets para trabajo y entretenimiento. iPad, Samsung Galaxy Tab y tablets Android de alta gama.</p>
-                    <div class="category-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">18</div>
-                            <div class="stat-label">Productos</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">4</div>
-                            <div class="stat-label">Marcas</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">4.5</div>
-                            <div class="stat-label">Rating</div>
-                        </div>
-                    </div>
-                    <div class="category-actions">
-                        <button class="btn btn-explore">
-                            <i class="fas fa-arrow-right me-2"></i>Explorar
-                        </button>
-                        <button class="btn btn-wishlist">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Accesorios -->
-            <div class="category-card fade-in-up stagger-2">
-                <div class="category-header">
-                    <div class="category-gradient" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
-                        <i class="fas fa-plug category-icon" style="color: var(--tech-dark);"></i>
-                    </div>
-                    <div class="category-overlay">
-                        <i class="fas fa-eye text-dark" style="font-size: 2rem;"></i>
-                    </div>
-                    <div class="category-badge">73 productos</div>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">Accesorios</h3>
-                    <p class="category-description">Cargadores, cables, fundas, soportes y todos los accesorios que necesitas para tus dispositivos.</p>
-                    <div class="category-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">73</div>
-                            <div class="stat-label">Productos</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">15</div>
-                            <div class="stat-label">Marcas</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">4.4</div>
-                            <div class="stat-label">Rating</div>
-                        </div>
-                    </div>
-                    <div class="category-actions">
-                        <button class="btn btn-explore">
-                            <i class="fas fa-arrow-right me-2"></i>Explorar
-                        </button>
-                        <button class="btn btn-wishlist">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
 
         
+            
+         <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-microchip me-2"></i>TechZone</h5>
+                    <p class="col-lg mb-4">Tu tienda de confianza para productos tecnológicos de última generación.</p>
+                    <div class="d-flex">
+                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Productos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Gaming</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Soporte</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Ayuda</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                        <li><a href="#">Garantía</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i>Tegucigalpa, Honduras</li>
+                        <li><i class="fas fa-phone me-2"></i>+504 1234-5678</li>
+                        <li><i class="fas fa-envelope me-2"></i>info@techzone.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: #333;">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="col-lg mb-4">&copy; 2024 TechZone. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+        
     </body>
 </html>
+

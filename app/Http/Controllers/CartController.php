@@ -8,6 +8,12 @@ use App\Models\Cart;
 class CartController extends Controller
 {
     
+
+    public function carrito()
+    {
+        return view('cart');
+    }
+    
    public function addToCart(Request $request)
 {
     $request->validate([

@@ -694,306 +694,108 @@
                 <button class="filter-tab">Smartphones</button>
                 <button class="filter-tab">Laptops</button>
                 <button class="filter-tab">Gaming</button>
-                <button class="filter-tab">Audio</button>
-                <button class="filter-tab">Accesorios</button>
             </div>
 
-            <div class="row g-4">
-                <!-- Producto 1 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card product-card">
-                        <div class="product-image-container">
-                            <div style="height: 250px; background: linear-gradient(45deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-mobile-alt text-white" style="font-size: 4rem;"></i>
-                            </div>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <div class="product-discount">-45%</div>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Smartphones</div>
-                            <h5 class="product-title">iPhone 13 Pro</h5>
-                            <p class="product-description">Smartphone con cámara profesional y chip A15 Bionic</p>
-                            <div class="product-price">
-                                <span class="current-price">$699</span>
-                                <span class="original-price">$1,299</span>
-                                <span class="savings">Ahorras $600</span>
-                            </div>
-                            <div class="offer-timer">⏰ Oferta termina en 2 días</div>
-                            <div class="product-actions">
-                                <button class="btn btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                </button>
-                                <button class="btn btn-quick-view">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <section>
+            <div class="container mt-4">
+                <h2 class="mb-4 text-center">Ofertas Disponibles</h2>
+                <div class="row g-4">
+                    @foreach ($ofertas as $oferta)
+                        @php
+                            $producto = $oferta->producto; // relación belongsTo(Producto::class)
+                            $categoria = $producto->categoria;
+                            $ahorro = $oferta->precio_original - $oferta->precio_oferta;
+                        @endphp
 
-                <!-- Producto 2 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card product-card">
-                        <div class="product-image-container">
-                            <div style="height: 250px; background: linear-gradient(45deg, #f093fb, #f5576c); display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-laptop text-white" style="font-size: 4rem;"></i>
-                            </div>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <div class="product-discount">-30%</div>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Laptops</div>
-                            <h5 class="product-title">MacBook Air M1</h5>
-                            <p class="product-description">Laptop ultradelgada con chip M1 y 8GB RAM</p>
-                            <div class="product-price">
-                                <span class="current-price">$899</span>
-                                <span class="original-price">$1,299</span>
-                                <span class="savings">Ahorras $400</span>
-                            </div>
-                            <div class="offer-timer">🔥 Flash Sale - Solo hoy</div>
-                            <div class="product-actions">
-                                <button class="btn btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                </button>
-                                <button class="btn btn-quick-view">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card product-card">
+                                <!-- Imagen del producto -->
+                                <div class="product-image-container">
+                                    <div style="height: 250px; display: flex; align-items: center; justify-content: center; background: #f8f9fa;">
+                                        <img src="{{ asset('images/' . $producto->imagen_producto) }}"
+                                            alt="{{ $producto->nombre_producto }}"
+                                            style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                                    </div>
 
-                <!-- Producto 3 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card product-card">
-                        <div class="product-image-container">
-                            <div style="height: 250px; background: linear-gradient(45deg, #4facfe, #00f2fe); display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-gamepad text-white" style="font-size: 4rem;"></i>
-                            </div>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <div class="product-discount">-25%</div>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Gaming</div>
-                            <h5 class="product-title">PlayStation 5</h5>
-                            <p class="product-description">Consola de nueva generación con SSD ultra rápido</p>
-                            <div class="product-price">
-                                <span class="current-price">$399</span>
-                                <span class="original-price">$529</span>
-                                <span class="savings">Ahorras $130</span>
-                            </div>
-                            <div class="offer-timer">📦 Últimas 5 unidades</div>
-                            <div class="product-actions">
-                                <button class="btn btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                </button>
-                                <button class="btn btn-quick-view">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                    <button class="wishlist-btn">
+                                        <i class="far fa-heart"></i>
+                                    </button>
 
-                <!-- Producto 4 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card product-card">
-                        <div class="product-image-container">
-                            <div style="height: 250px; background: linear-gradient(45deg, #fa709a, #fee140); display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-headphones text-white" style="font-size: 4rem;"></i>
-                            </div>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <div class="product-discount">-40%</div>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Audio</div>
-                            <h5 class="product-title">AirPods Pro</h5>
-                            <p class="product-description">Auriculares con cancelación activa de ruido</p>
-                            <div class="product-price">
-                                <span class="current-price">$149</span>
-                                <span class="original-price">$249</span>
-                                <span class="savings">Ahorras $100</span>
-                            </div>
-                            <div class="offer-timer">🎯 Oferta fin de semana</div>
-                            <div class="product-actions">
-                                <button class="btn btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                </button>
-                                <button class="btn btn-quick-view">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                    <div class="product-discount">-{{ $oferta->descuento }}%</div>
+                                </div>
 
-                <!-- Producto 5 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card product-card">
-                        <div class="product-image-container">
-                            <div style="height: 250px; background: linear-gradient(45deg, #a8edea, #fed6e3); display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-tablet-alt text-dark" style="font-size: 4rem;"></i>
-                            </div>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <div class="product-discount">-35%</div>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Tablets</div>
-                            <h5 class="product-title">iPad Air 5</h5>
-                            <p class="product-description">Tablet con chip M1 y pantalla Liquid Retina</p>
-                            <div class="product-price">
-                                <span class="current-price">$389</span>
-                                <span class="original-price">$599</span>
-                                <span class="savings">Ahorras $210</span>
-                            </div>
-                            <div class="offer-timer">💎 Oferta premium</div>
-                            <div class="product-actions">
-                                <button class="btn btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                </button>
-                                <button class="btn btn-quick-view">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                <!-- Información del producto -->
+                                <div class="product-info">
+                                    <div class="product-category">{{ $categoria->nombre_categoria }}</div>
+                                    <h5 class="product-title">{{ $producto->nombre_producto }}</h5>
+                                    <p class="product-description">{{ $oferta->descripcion ?? $producto->descripcion_ }}</p>
 
-                <!-- Producto 6 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card product-card">
-                        <div class="product-image-container">
-                            <div style="height: 250px; background: linear-gradient(45deg, #ffecd2, #fcb69f); display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-camera text-dark" style="font-size: 4rem;"></i>
-                            </div>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <div class="product-discount">-50%</div>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Cámaras</div>
-                            <h5 class="product-title">Canon EOS R6</h5>
-                            <p class="product-description">Cámara mirrorless profesional con video 4K</p>
-                            <div class="product-price">
-                                <span class="current-price">$1,499</span>
-                                <span class="original-price">$2,999</span>
-                                <span class="savings">Ahorras $1,500</span>
-                            </div>
-                            <div class="offer-timer">🔥 Mega descuento</div>
-                            <div class="product-actions">
-                                <button class="btn btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                </button>
-                                <button class="btn btn-quick-view">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                    <div class="product-price">
+                                        <span class="current-price">${{ number_format($oferta->precio_oferta, 2) }}</span>
+                                        <span class="original-price">${{ number_format($oferta->precio_original, 2) }}</span>
+                                        <span class="savings">Ahorras ${{ number_format($ahorro, 2) }}</span>
+                                    </div>
 
-                <!-- Producto 7 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card product-card">
-                        <div class="product-image-container">
-                            <div style="height: 250px; background: linear-gradient(45deg, #ff9a9e, #fecfef); display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-mouse text-dark" style="font-size: 4rem;"></i>
-                            </div>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <div class="product-discount">-60%</div>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Accesorios</div>
-                            <h5 class="product-title">Mouse Gaming RGB</h5>
-                            <p class="product-description">Mouse gaming con sensor óptico de alta precisión</p>
-                            <div class="product-price">
-                                <span class="current-price">$39</span>
-                                <span class="original-price">$99</span>
-                                <span class="savings">Ahorras $60</span>
-                            </div>
-                            <div class="offer-timer">⚡ Liquidación</div>
-                            <div class="product-actions">
-                                <button class="btn btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                </button>
-                                <button class="btn btn-quick-view">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                    <div class="offer-timer">
+                                        ⏰ Oferta termina en {{ \Carbon\Carbon::parse($oferta->fecha_fin)->diffInDays(now()) }} días
+                                    </div>
 
-                <!-- Producto 8 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card product-card">
-                        <div class="product-image-container">
-                            <div style="height: 250px; background: linear-gradient(45deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-tv text-white" style="font-size: 4rem;"></i>
-                            </div>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <div class="product-discount">-20%</div>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">TV & Monitor</div>
-                            <h5 class="product-title">Monitor 4K 27"</h5>
-                            <p class="product-description">Monitor profesional con resolución 4K UHD</p>
-                            <div class="product-price">
-                                <span class="current-price">$319</span>
-                                <span class="original-price">$399</span>
-                                <span class="savings">Ahorras $80</span>
-                            </div>
-                            <div class="offer-timer">🖥️ Oferta especial</div>
-                            <div class="product-actions">
-                                <button class="btn btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                </button>
-                                <button class="btn btn-quick-view">
-                                    <i class="fas fa-eye"></i>
-                                </button>
+                                    <div class="product-actions">
+                                        <button class="btn btn-add-cart">
+                                            <i class="fas fa-shopping-cart me-2"></i>Agregar
+                                        </button>
+                                        <button class="btn btn-quick-view">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
+        </section>
 
-            <!-- Pagination -->
-            <nav aria-label="Navegación de ofertas" class="mt-4">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Siguiente</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
+
+<!-- Pagination -->
+<nav aria-label="Navegación de ofertas" class="mt-4">
+    <ul class="pagination justify-content-center">
+        <!-- Botón Anterior -->
+        @if ($ofertas->onFirstPage())
+            <li class="page-item disabled">
+                <span class="page-link">Anterior</span>
+            </li>
+        @else
+            <li class="page-item">
+                <a class="page-link" href="{{ $ofertas->previousPageUrl() }}" rel="prev">Anterior</a>
+            </li>
+        @endif
+
+        <!-- Números de página -->
+        @foreach ($ofertas->getUrlRange(1, $ofertas->lastPage()) as $page => $url)
+            @if ($page == $ofertas->currentPage())
+                <li class="page-item active">
+                    <span class="page-link">{{ $page }}</span>
+                </li>
+            @else
+                <li class="page-item">
+                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                </li>
+            @endif
+        @endforeach
+
+        <!-- Botón Siguiente -->
+        @if ($ofertas->hasMorePages())
+            <li class="page-item">
+                <a class="page-link" href="{{ $ofertas->nextPageUrl() }}" rel="next">Siguiente</a>
+            </li>
+        @else
+            <li class="page-item disabled">
+                <span class="page-link">Siguiente</span>
+            </li>
+        @endif
+    </ul>
+</nav>
 
     <!-- Newsletter Section -->
     <div class="container">
@@ -1015,10 +817,12 @@
     </div>
 
       <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4">
+       <section>
+
+           <footer class="footer">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-lg-4 mb-4">
                     <h5><i class="fas fa-microchip me-2"></i>TechZone</h5>
                     <p class="col-lg mb-4">Tu tienda de confianza para productos tecnológicos de última generación.</p>
                     <div class="d-flex">
@@ -1063,6 +867,7 @@
             </div>
         </div>
     </footer>
+</section>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

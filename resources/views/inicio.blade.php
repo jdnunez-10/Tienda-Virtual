@@ -1,3 +1,4 @@
+    
     <!DOCTYPE html>
 <html lang="es">
 
@@ -272,7 +273,7 @@
                     <button class="btn btn-link me-3" data-bs-toggle="modal" data-bs-target="#searchModal">
                         <i class="fas fa-search"></i>
                     </button>
-                    <a href="#" class="btn btn-link position-relative me-3">
+                    <a href="{{ route('carrito') }}" class="btn btn-link position-relative me-3">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
                     </a>
@@ -430,6 +431,46 @@
                     }
                     </style>
 
+
+                        <!-- Pagination -->
+                <nav aria-label="Navegación de productosDestacados" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <!-- Botón Anterior -->
+                        @if ($productosDestacados->onFirstPage())
+                            <li class="page-item disabled">
+                                <span class="page-link">Anterior</span>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $productosDestacados->previousPageUrl() }}" rel="prev">Anterior</a>
+                            </li>
+                        @endif
+
+                        <!-- Números de página -->
+                        @foreach ($productosDestacados->getUrlRange(1, $productosDestacados->lastPage()) as $page => $url)
+                            @if ($page == $productosDestacados->currentPage())
+                                <li class="page-item active">
+                                    <span class="page-link">{{ $page }}</span>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                </li>
+                            @endif
+                        @endforeach
+
+                        <!-- Botón Siguiente -->
+                        @if ($productosDestacados->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $productosDestacados->nextPageUrl() }}" rel="next">Siguiente</a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <span class="page-link">Siguiente</span>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
 
     <!-- Newsletter Section -->
     <section class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
