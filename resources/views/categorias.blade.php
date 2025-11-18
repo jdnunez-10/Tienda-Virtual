@@ -531,9 +531,8 @@
                 @foreach($categorias as $categoria)
                     <div class="category-card fade-in-up">
                         <div class="category-header">
-                            <div class="category-gradient"
->
-                            
+                            <div class="category-gradient">
+                                
                             </div>
                             <div class="category-overlay">
                                 <i class="fas fa-eye text-white" style="font-size: 2rem;"></i>

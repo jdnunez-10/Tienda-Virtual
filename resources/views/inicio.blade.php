@@ -273,9 +273,22 @@
                     <button class="btn btn-link me-3" data-bs-toggle="modal" data-bs-target="#searchModal">
                         <i class="fas fa-search"></i>
                     </button>
-                    <a href="{{ route('carrito') }}" class="btn btn-link position-relative me-3">
+                   <a href="{{ route('carrito.ver') }}" class="btn btn-link position-relative me-3">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+
+                        @php
+                            // Si el usuario está logeado, contar desde la BD
+                            if (Auth::check()) {
+                                $cantidadCarrito = \App\Models\Carrito::where('user_id', Auth::id())->sum('cantidad');
+                            } else {
+                                $carrito = session('carrito', []);
+                                $cantidadCarrito = collect($carrito)->sum('cantidad');
+                            }
+                        @endphp
+
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ $cantidadCarrito }}
+                        </span>
                     </a>
                     <a href="#" class="btn btn-link">
                         <i class="fas fa-user"></i>
@@ -347,7 +360,7 @@
                                     </div>
                                     <h4>{{ $categoria->nombre_categoria }}</h4>
                                     <p class="text-muted">{{ $categoria->descripcion }}</p>
-                                    <a href="#" class="btn btn-outline-primary">Ver Más</a>
+                                    <a href="{{ route('productos') }}" class="btn btn-outline-primary">Ver Más</a>
                                 </div>
                             </div>
                         @endforeach
@@ -397,7 +410,10 @@
                                                             data-image="{{ asset('img/' . $producto->imagen_producto) }}"
                                                             style="background: var(--tech-blue); border: none; color: white; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
                                                         <i class="fas fa-shopping-cart me-2"></i>
-                                                        Agregar al Carrito
+
+                                                        <a href="#" class="btn btn-primary">
+                                                            Agregar al carrito
+                                                        </a>
                                                     </button>
                                                 </div>
                                             </div>

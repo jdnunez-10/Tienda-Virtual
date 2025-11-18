@@ -420,17 +420,18 @@
             </ol>
         </nav>
     </div>
+    
+    <!-- Main Content -->
+    <div class="container py-4">
+        <div class="row">
 
-            <!-- Main Content -->
-        <div class="container py-4">
-            <div class="row">
-                <!-- Mobile Filter Button -->
-                <div class="col-12 mobile-filters mb-4">
-                    <button class="btn btn-outline-primary w-100" data-bs-toggle="offcanvas" data-bs-target="#mobileFilters">
-                        <i class="fas fa-filter me-2"></i>Filtros
+               <!-- Mobile Filter Button -->
+               <div class="col-12 mobile-filters mb-4">
+                   <button class="btn btn-outline-primary w-100" data-bs-toggle="offcanvas" data-bs-target="#mobileFilters">
+                       <i class="fas fa-filter me-2"></i>Filtros
                     </button>
                 </div>
-
+                
                 <!-- Desktop Filters Sidebar -->
                 <div class="col-lg-3 desktop-filters">
                     <div class="filter-sidebar">
@@ -441,15 +442,15 @@
                             <h6 class="filter-title">Categorías</h6>
 
                             @foreach($categorias as $categoria)
-                                <div class="form-check">
+                            <div class="form-check">
                                     <input class="form-check-input" 
                                         type="checkbox" 
                                         id="categoria_{{ $categoria->id }}" 
                                         name="categorias[]" 
                                         value="{{ $categoria->id }}">
-                                    <label class="form-check-label" for="categoria_{{ $categoria->id }}">
-                                        {{ $categoria->nombre_categoria }} 
-                                        <span class="text-muted">({{ $categoria->productos->count() }})</span>
+                                        <label class="form-check-label" for="categoria_{{ $categoria->id }}">
+                                            {{ $categoria->nombre_categoria }} 
+                                            <span class="text-muted">({{ $categoria->productos->count() }})</span>
                                     </label>
                                 </div>
                             @endforeach
@@ -465,26 +466,26 @@
                                     </div>
                                     <div class="col-6">
                                         <input type="number" class="form-control" placeholder="Max" id="maxPrice">
-                                    </div>
+                                        </div>
                                 </div>
-                            </div>
-                            <div class="form-check mt-3">
-                                <input class="form-check-input" type="checkbox" id="enOferta">
-                                <label class="form-check-label" for="enOferta">Solo en oferta</label>
+                                </div>
+                                <div class="form-check mt-3">
+                                    <input class="form-check-input" type="checkbox" id="enOferta">
+                                    <label class="form-check-label" for="enOferta">Solo en oferta</label>
                             </div>
                         </div>
-
+                        
                         <!-- Brand Filter -->
                         <div class="filter-section">
                             <h6 class="filter-title">Marcas</h6>
                             @foreach(['Apple', 'Samsung', 'Sony', 'ASUS'] as $marca)
-                                <div class="form-check">
+                            <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="marca_{{ strtolower($marca) }}">
                                     <label class="form-check-label" for="marca_{{ strtolower($marca) }}">{{ $marca }}</label>
                                 </div>
                             @endforeach
                         </div>
-
+                        
                         <button class="btn btn-primary w-100 mb-3">Aplicar Filtros</button>
                         <button class="btn btn-outline-secondary w-100">Limpiar Filtros</button>
                     </div>
@@ -524,16 +525,16 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Products Grid -->
                     <div class="row g-4" id="productsGrid">
                         @foreach($productos as $producto)
-                            <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6">
                                 <div class="card product-card">
                                     <div class="product-image-container">
                                         <img src="{{ asset('img/' . $producto->imagen_producto) }}" 
-                                            alt="{{ $producto->nombre_producto }}" 
-                                            style="height: 280px; width: 100%; object-fit: cover; border-radius: 8px;">
+                                        alt="{{ $producto->nombre_producto }}" 
+                                        style="height: 280px; width: 100%; object-fit: cover; border-radius: 8px;">
                                         <button class="wishlist-btn"><i class="far fa-heart"></i></button>
 
                                         @if($producto->descuento)
@@ -578,39 +579,42 @@
                     </div>
                 </div>
             </div>
+        </div>
+                
+    </div>
 
+        <!-- Pagination Estática -->
+<nav aria-label="Navegación de productos" class="mt-4">
+    <ul class="pagination justify-content-center">
+        <!-- Botón Anterior -->
+        <li class="page-item disabled">
+            <span class="page-link">Anterior</span>
+        </li>
+        
+        <!-- Números de página -->
+        <li class="page-item active">
+            <span class="page-link">1</span>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#productos">2</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#productos">3</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#productos">4</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#productos">5</a>
+        </li>
+        
+        <!-- Botón Siguiente -->
+        <li class="page-item">
+            <a class="page-link" href="#productos">Siguiente</a>
+        </li>
+    </ul>
+</nav>
 
-             </div>
-            
-            <!--pagination-->
-             <nav aria-label="Navegación de productos" class="mt-4">
-            <ul class="pagination justify-content-center">
-                {{-- Botón anterior --}}
-                @if ($productos->onFirstPage())
-                    <li class="page-item disabled"><span class="page-link">Anterior</span></li>
-                @else
-                    <li class="page-item"><a class="page-link" href="{{ $productos->previousPageUrl() }}">Anterior</a></li>
-                @endif
-
-                {{-- Números de página --}}
-                @foreach ($productos->getUrlRange(1, $productos->lastPage()) as $page => $url)
-                    @if ($page == $productos->currentPage())
-                        <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
-                    @else
-                        <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
-                    @endif
-                @endforeach
-
-                {{-- Botón siguiente --}}
-                @if ($productos->hasMorePages())
-                    <li class="page-item"><a class="page-link" href="{{ $productos->nextPageUrl() }}">Siguiente</a></li>
-                @else
-                    <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
-                @endif
-            </ul>
-        </nav>
-
-                             
     <!-- Footer -->
     <footer class="footer">
         <div class="container">

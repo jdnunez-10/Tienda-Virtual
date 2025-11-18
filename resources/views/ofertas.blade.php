@@ -755,6 +755,8 @@
                 </div>
             </div>
         </section>
+        </div>
+    </div>
 
 
 <!-- Pagination -->

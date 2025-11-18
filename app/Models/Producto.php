@@ -26,10 +26,17 @@ class Producto extends Model
     ];
 
     // Relación con categorías (opcional)
-    public function categoria()
-    {
-        return $this->belongsTo(Categoria::class, 'categoria_id');
-    }
+    //public function categoria()
+    //{
+      //  return $this->belongsTo(Categoria::class, 'categoria_id');
+    //}
+
+    // app/Models/Producto.php
+            public function categoria()
+            {
+                return $this->belongsTo(Categoria::class);
+            }
+
 
     public function ofertas()
 {

@@ -13,12 +13,7 @@ class CategoriasController extends Controller
         return view('categorias');
     }
 
-    public function mostrarCategorias()
-    {
-        $categorias = Categoria::all();
 
-        return view('inicio', 'productos', compact('categorias'));
-    }
 
     public function mostrarCategoriasEnCategorias()
 {

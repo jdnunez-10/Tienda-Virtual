@@ -6,7 +6,7 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\OfertasController;
 use App\Http\Controllers\ContactoController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\CarritoController;    
 
 use App\Models\Categoria;
 
@@ -17,18 +17,18 @@ Route::get('/', function () {
 Route::get('/inicio', 
 [InicioController::class, 'inicio'])->name('inicio');
 
-Route::get('/', 
-[CategoriasController::class, 'mostrarCategorias'])->name('mostrarCategorias');
-
 Route::get('/inicio', 
-[ProductosController::class, 'mostrarProductosDestacados'])->name('inicio');
-
-Route::get('/productos', 
-[ProductosController::class, 'mostrarEnProductos'])->name('productos');
-
+[InicioController::class, 'mostrarProductosDestacados'])->name('inicio');
 
 Route::get('/productos', 
 [ProductosController::class, 'productos'])->name('productos');
+
+Route::get('/', 
+[ProductosController::class, 'mostrarEnProductos'])->name('productos');
+
+Route::get('/', 
+[ProductosController::class, 'mostrarCategorias'])->name('productos');
+
 
 Route::get('/categorias', 
 [CategoriasController::class, 'categorias'])->name('categorias');
@@ -50,39 +50,17 @@ Route::get('/contacto',
 
 //RUTAS DEL CARRITO
 
-    Route::get('/carrito', 
-    [CartController::class, 'carrito'])->name('carrito');
+ Route::middleware('auth')->group(function () {
+    Route::get('/carrito',
+    [CarritoController::class, 'verCarrito'])->name('carrito.ver');
+   
+    //Route::post('/carrito/agregar/{id_producto}',
 
-Route::prefix('cart')->name('cart.')->group(function () {
-    Route::post('/add', 
-    [CartController::class, 'addToCart'])->name('add');
+    //[CarritoController::class, 'agregar'])->name('carrito.agregar');
 
-    Route::post('/remove-product', 
-    [CartController::class, 'removeFromCart'])->name('remove-product');
-
-    Route::post('/check-status', 
-    [CartController::class, 'checkProductStatus'])->name('check-status');
-    
-    Route::get('/view', 
-    [CartController::class, 'viewCart'])->name('view');
-
-    Route::patch('/update/{id}', 
-    [CartController::class, 'updateQuantity'])->name('update');
-
-    Route::delete('/remove/{id}', 
-    [CartController::class, 'removeItem'])->name('remove');
-
-    Route::delete('/clear', 
-    [CartController::class, 'clearCart'])->name('clear');
-
-    Route::get('/checkout', 
-    [CartController::class, 'checkout'])->name('checkout');
-
-    Route::post('/process-payment', 
-    [CartController::class, 'processPayment'])->name('process-payment');
-
-    Route::get('/payment-success', 
-    [CartController::class, 'paymentSuccess'])->name('pago-exitoso');
+    Route::delete('/carrito/quitar/{id_producto}',
+    [CarritoController::class, 'quitar'])->name('carrito.quitar');
+});   
 
     
-});
+;

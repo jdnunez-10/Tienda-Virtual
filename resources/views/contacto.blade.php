@@ -288,7 +288,7 @@
                         <i class="fas fa-search"></i>
                     </button>
 
-                    <a href="{{ route('cart.view') }}" class="btn btn-link position-relative me-3">
+                    <a href="#" class="btn btn-link position-relative me-3">
                         <i class="fas fa-shopping-cart"></i>
                         <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {{ session('cart') ? array_sum(session('cart')) : 0 }}
