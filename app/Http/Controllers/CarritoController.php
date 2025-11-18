@@ -41,9 +41,9 @@ class CarritoController extends Controller
         } else {
             $carrito[$id_producto] = [
                 'id' => $producto->id_producto,
-                'nombre' => $producto->nombre,
+                'nombre' => $producto->nombre_producto,
                 'precio' => $producto->precio,
-                'imagen' => $producto->imagen,
+                'imagen' => $producto->imagen_producto,
                 'cantidad' => 1,
             ];
         }

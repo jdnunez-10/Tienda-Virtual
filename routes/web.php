@@ -50,14 +50,14 @@ Route::get('/contacto',
 
 //RUTAS DEL CARRITO
 
+Route::post('carrito/agregar/{id_producto}',
+ [CarritoController::class, 'agregar'])->name('carrito.agregar');
+
  Route::middleware('auth')->group(function () {
     Route::get('/carrito',
     [CarritoController::class, 'verCarrito'])->name('carrito.ver');
    
-    //Route::post('/carrito/agregar/{id_producto}',
-
-    //[CarritoController::class, 'agregar'])->name('carrito.agregar');
-
+   
     Route::delete('/carrito/quitar/{id_producto}',
     [CarritoController::class, 'quitar'])->name('carrito.quitar');
 });   

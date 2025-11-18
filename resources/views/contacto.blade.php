@@ -288,10 +288,21 @@
                         <i class="fas fa-search"></i>
                     </button>
 
-                    <a href="#" class="btn btn-link position-relative me-3">
+                    <a href="{{ route('carrito.ver') }}" class="btn btn-link position-relative me-3">
                         <i class="fas fa-shopping-cart"></i>
-                        <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            {{ session('cart') ? array_sum(session('cart')) : 0 }}
+
+                        @php
+                            // Si el usuario está logeado, contar desde la BD
+                            if (Auth::check()) {
+                                $cantidadCarrito = \App\Models\Carrito::where('user_id', Auth::id())->sum('cantidad');
+                            } else {
+                                $carrito = session('carrito', []);
+                                $cantidadCarrito = collect($carrito)->sum('cantidad');
+                            }
+                        @endphp
+
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ $cantidadCarrito }}
                         </span>
                     </a>
 

@@ -404,17 +404,42 @@
                                                 <h5 class="card-title">{{ $producto->nombre_producto }}</h5>
                                                 <p class="card-text text-muted">Cantidad disponible: {{ $producto->cantidad }}</p>
                                                 <div class="d-grid">
-                                                    <button class="btn add-to-cart-btn" 
-                                                            data-product="{{ $producto->nombre_producto }}"
-                                                            data-price="{{ $producto->precio }}"
-                                                            data-image="{{ asset('img/' . $producto->imagen_producto) }}"
-                                                            style="background: var(--tech-blue); border: none; color: white; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
-                                                        <i class="fas fa-shopping-cart me-2"></i>
 
-                                                        <a href="#" class="btn btn-primary">
-                                                            Agregar al carrito
-                                                        </a>
-                                                    </button>
+                                                        @php
+                                                                if(Auth::check()) {
+                                                                    // Usuario autenticado
+                                                                    $enCarrito = \App\Models\Carrito::where('user_id', Auth::id())
+                                                                        ->where('producto_id', $producto->id_producto)
+                                                                        ->exists();
+                                                                } else {
+                                                                    // Invitado (carrito en sesión)
+                                                                    $sessionCarrito = session()->get('carrito', []);
+                                                                    $enCarrito = isset($sessionCarrito[$producto->id_producto]);
+                                                                }
+                                                            @endphp
+                                                                @if ($enCarrito)
+                                                                <form action="{{ route('carrito.quitar', $producto->id_producto) }}" method="POST">
+                                                                             @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit" class="btn btn-danger">
+                                                                                Quitar del carrito
+                                                                            </button>
+                                                                        </form>
+                                                                        @else
+                                                    <form action="{{ route('carrito.agregar', $producto->id_producto) }}" method="POST" class="d-grid">
+                                                            @csrf
+                                                            <button type="submit" 
+                                                                class="btn add-to-cart-btn"
+                                                                data-product="{{ $producto->nombre_producto }}"
+                                                                data-price="{{ $producto->precio }}"
+                                                                data-image="{{ asset('img/' . $producto->imagen_producto) }}"
+                                                                style="background: var(--tech-blue); border: none; color: white; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                                                                
+                                                                <i class="fas fa-shopping-cart me-2"></i>
+                                                                Agregar al carrito
+                                                            </button>
+                                                        </form>
+                                                                        @endif
                                                 </div>
                                             </div>
                                         </div>

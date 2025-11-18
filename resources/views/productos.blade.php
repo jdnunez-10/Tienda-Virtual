@@ -399,9 +399,22 @@
                     <button class="btn btn-link me-3" data-bs-toggle="modal" data-bs-target="#searchModal">
                         <i class="fas fa-search"></i>
                     </button>
-                    <a href="#" class="btn btn-link position-relative me-3">
+                   <a href="{{ route('carrito.ver') }}" class="btn btn-link position-relative me-3">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+
+                        @php
+                            // Si el usuario está logeado, contar desde la BD
+                            if (Auth::check()) {
+                                $cantidadCarrito = \App\Models\Carrito::where('user_id', Auth::id())->sum('cantidad');
+                            } else {
+                                $carrito = session('carrito', []);
+                                $cantidadCarrito = collect($carrito)->sum('cantidad');
+                            }
+                        @endphp
+
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ $cantidadCarrito }}
+                        </span>
                     </a>
                     <a href="#" class="btn btn-link">
                         <i class="fas fa-user"></i>
@@ -565,12 +578,43 @@
                                         </div>
 
                                         <div class="product-actions">
-                                            <button class="btn btn-add-cart">
-                                                <i class="fas fa-shopping-cart me-2"></i>Agregar
-                                            </button>
-                                            <button class="btn btn-quick-view">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
+                                            @php
+                                                                if(Auth::check()) {
+                                                                    // Usuario autenticado
+                                                                    $enCarrito = \App\Models\Carrito::where('user_id', Auth::id())
+                                                                        ->where('producto_id', $producto->id_producto)
+                                                                        ->exists();
+                                                                } else {
+                                                                    // Invitado (carrito en sesión)
+                                                                    $sessionCarrito = session()->get('carrito', []);
+                                                                    $enCarrito = isset($sessionCarrito[$producto->id_producto]);
+                                                                }
+                                                            @endphp
+                                                                @if ($enCarrito)
+                                                                <form action="{{ route('carrito.quitar', $producto->id_producto) }}" method="POST">
+                                                                             @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit" class="btn btn-danger">
+                                                                                Quitar del carrito
+                                                                            </button>
+                                                                        </form>
+                                                                        @else
+                                                    <form action="{{ route('carrito.agregar', $producto->id_producto) }}" method="POST" class="d-grid">
+                                                            @csrf
+                                                            <button type="submit" 
+                                                                class="btn add-to-cart-btn"
+                                                                data-product="{{ $producto->nombre_producto }}"
+                                                                data-price="{{ $producto->precio }}"
+                                                                data-image="{{ asset('img/' . $producto->imagen_producto) }}"
+                                                                style="background: var(--tech-blue); border: none; color: white; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                                                                
+                                                                <i class="fas fa-shopping-cart me-2"></i>
+                                                                Agregar al carrito
+                                                            </button>
+                                                        </form>
+                                                                        @endif
+
+
                                         </div>
                                     </div>
                                 </div>
