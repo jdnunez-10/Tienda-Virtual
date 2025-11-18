@@ -1,18 +1,18 @@
 <?php
 
-use App\Http\Controllers\InicioController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\OfertasController;
 use App\Http\Controllers\ContactoController;
-use App\Http\Controllers\CarritoController;    
-
-use App\Models\Categoria;
-
+use App\Http\Controllers\CarritoController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 
 Route::get('/inicio', 
 [InicioController::class, 'inicio'])->name('inicio');
@@ -55,12 +55,25 @@ Route::post('carrito/agregar/{id_producto}',
 
  Route::middleware('auth')->group(function () {
     Route::get('/carrito',
-    [CarritoController::class, 'verCarrito'])->name('carrito.ver');
+    [CarritoController::class, 'verCarrito'])
+    ->middleware('auth') 
+    ->name('carrito.ver');
    
    
     Route::delete('/carrito/quitar/{id_producto}',
     [CarritoController::class, 'quitar'])->name('carrito.quitar');
 });   
 
-    
-;
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
