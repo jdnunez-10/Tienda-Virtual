@@ -48,21 +48,33 @@ Route::get('/contacto',
 [ContactoController::class, 'contacto'])->name('contacto');
 
 
-//RUTAS DEL CARRITO
 
-Route::post('carrito/agregar/{id_producto}',
- [CarritoController::class, 'agregar'])->name('carrito.agregar');
+// Rutas del carrito (accesibles para todos, pero con lógica diferente según autenticación)
+Route::post('/carrito/agregar/{id_producto}', [CarritoController::class, 'agregar'])
+    ->name('carrito.agregar');
 
- Route::middleware('auth')->group(function () {
-    Route::get('/carrito',
-    [CarritoController::class, 'verCarrito'])
-    ->middleware('auth') 
+
+
+
+// Ruta para procesar el checkout (solo usuarios autenticados)
+Route::middleware(['auth'])->group(function () {
+
+Route::get('/carrito', [CarritoController::class, 'verCarrito'])
     ->name('carrito.ver');
-   
-   
-    Route::delete('/carrito/quitar/{id_producto}',
-    [CarritoController::class, 'quitar'])->name('carrito.quitar');
-});   
+
+Route::delete('/carrito/quitar/{id_producto}', [CarritoController::class, 'quitar'])
+    ->name('carrito.quitar');
+
+Route::patch('/carrito/actualizar/{id_producto}', [CarritoController::class, 'actualizar'])
+    ->name('carrito.actualizar');
+
+
+    Route::get('/checkout', [CarritoController::class, 'checkout'])
+        ->name('checkout');
+    
+    Route::post('/procesar-pago', [CarritoController::class, 'procesarPago'])
+        ->name('procesar.pago');
+}); 
 
 
 

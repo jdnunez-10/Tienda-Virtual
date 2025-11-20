@@ -548,31 +548,68 @@
                     </li>
                 </ul>
                 
-                <div class="d-flex align-items-center">
-                    <button class="btn btn-link me-3" data-bs-toggle="modal" data-bs-target="#searchModal">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <a href="{{ route('carrito.ver') }}" class="btn btn-link position-relative me-3">
-                        <i class="fas fa-shopping-cart"></i>
+                      <ul class="navbar-nav d-flex align-items-center ms-auto">
+                        <!-- Botón de búsqueda -->
+                        <li class="nav-item me-3">
+                            <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#searchModal">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </li>
 
-                        @php
-                            // Si el usuario está logeado, contar desde la BD
-                            if (Auth::check()) {
-                                $cantidadCarrito = \App\Models\Carrito::where('user_id', Auth::id())->sum('cantidad');
-                            } else {
-                                $carrito = session('carrito', []);
-                                $cantidadCarrito = collect($carrito)->sum('cantidad');
-                            }
-                        @endphp
+                        <!-- Carrito -->
+                        <li class="nav-item me-3 position-relative">
+                            <a href="{{ route('carrito.ver') }}" class="btn btn-link">
+                                <i class="fas fa-shopping-cart"></i>
+                                @php
+                                    $cantidadCarrito = Auth::check()
+                                        ? \App\Models\Carrito::where('user_id', Auth::id())->sum('cantidad')
+                                        : collect(session('carrito', []))->sum('cantidad');
+                                @endphp
+                                @if($cantidadCarrito > 0)
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {{ $cantidadCarrito }}
+                                    </span>
+                                @endif
+                            </a>
+                        </li>
 
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            {{ $cantidadCarrito }}
-                        </span>
-                    </a>
-                    <a href="#" class="btn btn-link">
-                        <i class="fas fa-user"></i>
-                    </a>
-                </div>
+                        <!-- Usuario -->
+                        @auth
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-user"></i> {{ Auth::user()->name }}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="{{ route('inicio') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fas fa-user-edit"></i> Mi Perfil</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">
+                                                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">
+                                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">
+                                    <i class="fas fa-user-plus"></i> Registrarse
+                                </a>
+                            </li>
+                        @endauth
+                    </ul>
+            </div>
+        </div>
+    </nav>
+</div>
             </div>
         </div>
     </nav>

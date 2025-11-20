@@ -246,7 +246,7 @@
             </div>
 
             <div class="back-home">
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('inicio') }}">
                     <i class="fas fa-arrow-left"></i> Volver al inicio
                 </a>
             </div>

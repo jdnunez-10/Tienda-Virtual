@@ -344,7 +344,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="hero-content fade-in-up">
-                        <h1>La Mejor Tecnología a Tu Alcance</h1>
+                        <h1>La mejor tecnología a tu alcance</h1>
                         <p class="lead">Descubre los últimos smartphones, laptops y accesorios tecnológicos con la mejor calidad y precios increíbles.</p>
                         <a href="#products" class="btn btn-tech btn-lg">Ver Productos</a>
                     </div>
@@ -441,7 +441,7 @@
                                                     <span class="price-tag">${{ number_format($producto->precio, 2) }}</span>
                                                 </div>
                                                 <h5 class="card-title">{{ $producto->nombre_producto }}</h5>
-                                                <p class="card-text text-muted">Cantidad disponible: {{ $producto->cantidad }}</p>
+                                                <p class="card-text text-muted"> {{ $producto->descripcion_ }}</p>
                                                 <div class="d-grid">
 
                                                         @php
