@@ -10,6 +10,7 @@ use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\InfoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -50,11 +51,14 @@ Route::get('/ofertas',
 Route::get('/contacto', 
 [ContactoController::class, 'contacto'])->name('contacto');
 
-
+Route::get('/sobre-nosotros', 
+[InfoController::class, 'sobreNosotros'])->name('sobre-nosotros');
 
 // Rutas del carrito (accesibles para todos, pero con lógica diferente según autenticación)
 Route::post('/carrito/agregar/{id_producto}', [CarritoController::class, 'agregar'])
     ->name('carrito.agregar');
+
+
 
 
 

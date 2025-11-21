@@ -553,6 +553,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contacto') }}">Contacto</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('sobre-nosotros') }}">Sobre nosotros</a>
+                    </li>
                 </ul>
                 
                       <ul class="navbar-nav d-flex align-items-center ms-auto">

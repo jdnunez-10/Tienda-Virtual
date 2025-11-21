@@ -259,7 +259,7 @@
                         <a class="nav-link" href="{{ route('inicio') }}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('productos') }}">Productos</a>
+                        <a class="nav-link " href="{{ route('productos') }}">Productos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="{{ route('categorias') }}" role="button">
@@ -272,6 +272,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contacto') }}">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('sobre-nosotros') }}">Sobre nosotros</a>
                     </li>
                 </ul>
                 
