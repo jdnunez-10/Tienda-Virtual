@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class DetallePedido extends Model
 {
     //
-    public $timestamps = false;
+
 
     use HasFactory;
 

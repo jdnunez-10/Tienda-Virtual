@@ -9,6 +9,7 @@ use App\Http\Controllers\OfertasController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\FacturaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -78,6 +79,13 @@ Route::patch('/carrito/actualizar/{id_producto}', [CarritoController::class, 'ac
 
        Route::get('/pedido/confirmacion/{pedido_id}', [CheckoutController::class, 'confirmacion'])
         ->name('pedido.confirmacion');
+
+        // Rutas para facturas PDF
+    Route::get('/pedido/factura/descargar/{pedido_id}', [FacturaController::class, 'descargarFactura'])
+        ->name('pedido.factura.descargar');
+    
+    Route::get('/pedido/factura/ver/{pedido_id}', [FacturaController::class, 'verFactura'])
+        ->name('pedido.factura.ver');
 
 }); 
 

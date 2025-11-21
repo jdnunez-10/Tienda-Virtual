@@ -134,11 +134,11 @@ public function procesarPago(Request $request)
 
     // Procesar según método de pago
     if ($request->metodo_pago === 'tarjeta') {
-        // Aquí iría la integración real con una pasarela de pago
-        // Por ahora solo simularemos el proceso
+       
+    
         
         // Guardar datos de la tarjeta de forma segura (encriptados)
-        // NOTA: En producción NUNCA guardes el CVV
+        
         $pedido->update([
             'ultimos_4_digitos' => substr($request->numero_tarjeta, -4),
             'nombre_titular' => $request->nombre_tarjeta,

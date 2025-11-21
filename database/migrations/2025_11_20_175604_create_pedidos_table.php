@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('numero_pedido')->unique();
             
+            
             // Información de envío
             $table->string('nombre_completo');
             $table->string('telefono', 20);

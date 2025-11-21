@@ -259,6 +259,30 @@
             background: var(--tech-accent);
         }
 
+         
+        /* Footer */
+        .footer {
+            background: var(--tech-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer h5 {
+            color: var(--tech-accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--tech-accent);
+        }
+
         @keyframes scaleIn {
             from {
                 transform: scale(0);
@@ -294,12 +318,92 @@
 </head>
 
 <body>
-    <!-- Navbar -->
+
+ <!-- Top Navigation -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2">
+        <div class="container">
+            <div class="d-flex justify-content-between w-100">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a class="text-light text-decoration-none me-3" href="mailto:info@techzone.com">info@techzone.com</a>
+                    <i class="fas fa-phone me-2"></i>
+                    <a class="text-light text-decoration-none" href="tel:+504-1234-5678">+504 1234-5678</a>
+                </div>
+                <div class="d-none d-lg-block">
+                    <a class="text-light me-3" href="#"><i class="fab fa-facebook"></i></a>
+                    <a class="text-light me-3" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="text-light me-3" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="text-light" href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+   <!-- Main Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <i class="fas fa-bolt"></i> TechZone
-            </a>
+            <a class="navbar-brand" href="#"><i class="fas fa-microchip me-2"></i>TechZone</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('inicio') }}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('productos') }}">Productos</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="{{ route('categorias') }}" role="button">
+                            Categorías
+                        </a>
+                     
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('ofertas') }}">Ofertas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('contacto') }}">Contacto</a>
+                    </li>
+                </ul>
+
+                 <!-- Usuario -->
+                        @auth
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-user"></i> {{ Auth::user()->name }}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="{{ route('inicio') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fas fa-user-edit"></i> Mi Perfil</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">
+                                                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">
+                                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">
+                                    <i class="fas fa-user-plus"></i> Registrarse
+                                </a>
+                            </li>
+                        @endauth
+                    </ul>
+            </div>
         </div>
     </nav>
 
@@ -465,20 +569,73 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Action Buttons -->
+                    <!-- Action Buttons -->
                 <div class="d-grid gap-2 mt-3">
-                    <a href="{{ url('/') }}" class="btn-primary text-center">
+                    <a href="{{ route('inicio') }}" class="btn-primary text-center">
                         <i class="fas fa-home"></i> Volver al Inicio
                     </a>
-                    <a href="#" class="btn-secondary text-center">
+                    <a href="{{ route('pedido.factura.descargar', ['pedido_id' => $pedido->id]) }}" class="btn-secondary text-center">
                         <i class="fas fa-file-pdf"></i> Descargar Factura
                     </a>
+                </div>
                 </div>
             </div>
         </div>
     </div>
+
+    
+
+
+      <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-microchip me-2"></i>TechZone</h5>
+                    <p class="col-lg mb-4">Tu tienda de confianza para productos tecnológicos de última generación.</p>
+                    <div class="d-flex">
+                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 footer-links">
+                    <h5>Productos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Gaming</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 footer-links">
+                    <h5>Soporte</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Ayuda</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                        <li><a href="#">Garantía</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i>Tegucigalpa, Honduras</li>
+                        <li><i class="fas fa-phone me-2"></i>+504 1234-5678</li>
+                        <li><i class="fas fa-envelope me-2"></i>info@techzone.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: #333;">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="col-lg mb-4">&copy; 2024 TechZone. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

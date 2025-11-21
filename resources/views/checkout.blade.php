@@ -675,20 +675,23 @@
                             <a href="{{ route('carrito.ver') }}" class="btn-back">
                                 <i class="fas fa-arrow-left"></i> Volver al Carrito
                             </a>
-                            @auth
-                            <a href="{{ route('procesar.pago') }}" type="submit" class="btn w-100"
-                                    style = "
-                                        background: #0d6efd; 
-                                        color: white; 
-                                        padding: 12px; 
-                                        border-radius: 10px; 
-                                        font-weight: 600; 
-                                        text-align: center;
-                                        transition: 0.3s;
-                                    ">
-                                <i class="fas fa-lock"></i> Realizar Pedido
-                            </a>
-                            @endauth
+                        
+                                <form action="{{ route('procesar.pago') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn w-100"
+                                        style="
+                                            background: #0d6efd; 
+                                            color: white; 
+                                            padding: 12px; 
+                                            border-radius: 10px; 
+                                            font-weight: 600; 
+                                            text-align: center;
+                                            transition: 0.3s;
+                                        ">
+                                        <i class="fas fa-lock"></i> Realizar Pedido
+                                    </button>
+                                </form>
+                                
                         </div>
                     </form>
                 </div>
@@ -908,6 +911,8 @@
                 }
             }
         });
+
+        
     </script>
 </body>
 
