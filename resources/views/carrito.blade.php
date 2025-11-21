@@ -573,10 +573,23 @@
                             <span>L {{ number_format($total * 1.15, 2) }}</span>
                         </div>
 
-                        <button class="btn-checkout">
-                            <i class="fas fa-credit-card"></i> Proceder al Pago
-                        </button>
-
+                        @auth
+                        
+                         <a href="{{ route('checkout') }}" class="btn w-100"
+                         style = "
+                                        background: #0d6efd; 
+                                        color: white; 
+                                        padding: 12px; 
+                                        border-radius: 10px; 
+                                        font-weight: 600; 
+                                        text-align: center;
+                                        transition: 0.3s;
+                                    ">
+                                <i class="fas fa-credit-card me-2"></i> Proceder al Pago
+                            </a>
+                        
+                        @endauth
+                    
                         <div class="mt-3 text-center">
                             <small class="text-muted">
                                 <i class="fas fa-lock"></i> Compra 100% segura

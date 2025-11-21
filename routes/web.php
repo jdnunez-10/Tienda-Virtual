@@ -8,6 +8,8 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\OfertasController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\CheckoutController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -68,12 +70,15 @@ Route::delete('/carrito/quitar/{id_producto}', [CarritoController::class, 'quita
 Route::patch('/carrito/actualizar/{id_producto}', [CarritoController::class, 'actualizar'])
     ->name('carrito.actualizar');
 
-
-    Route::get('/checkout', [CarritoController::class, 'checkout'])
+    Route::get('/checkout', [CheckoutController::class, 'checkout'])
         ->name('checkout');
     
-    Route::post('/procesar-pago', [CarritoController::class, 'procesarPago'])
+    Route::post('/procesar-pago', [CheckoutController::class, 'procesarPago'])
         ->name('procesar.pago');
+
+       Route::get('/pedido/confirmacion/{pedido_id}', [CheckoutController::class, 'confirmacion'])
+        ->name('pedido.confirmacion');
+
 }); 
 
 
