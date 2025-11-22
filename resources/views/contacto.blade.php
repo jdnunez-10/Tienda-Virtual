@@ -288,9 +288,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contacto') }}">Contacto</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('sobre-nosotros') }}">Sobre nosotros</a>
-                    </li>
                 </ul>
                 
                    <ul class="navbar-nav d-flex align-items-center ms-auto">
@@ -325,7 +322,7 @@
                                     <i class="fas fa-user"></i> {{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="{{ route('inicio') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
                                     <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fas fa-user-edit"></i> Mi Perfil</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
@@ -618,10 +615,10 @@
                 <div class="col-lg-2 col-md-6 mb-4 footer-links">
                     <h5>Soporte</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Ayuda</a></li>
-                        <li><a href="#">Devoluciones</a></li>
-                        <li><a href="#">Garantía</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="{{ route('faq') }}">Preguntas frecuentes</a></li>
+                        <li><a href="{{ route('devoluciones') }}">Devoluciones</a></li>
+                        <li><a href="{{route('garantia')}}">Garantía</a></li>
+                        <li><a href="{{ route('sobre-nosotros') }}">Sobre nosotros</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 mb-4">

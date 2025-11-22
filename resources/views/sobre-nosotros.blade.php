@@ -12,13 +12,6 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    
-    <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Bootstrap JS + Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
-
 
     <style>
           :root {
@@ -151,9 +144,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contacto') }}">Contacto</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('sobre-nosotros') }}">Sobre nosotros</a>
-                    </li>
+
                 </ul>
                 
                                     <ul class="navbar-nav d-flex align-items-center ms-auto">
@@ -283,45 +274,6 @@
                 </li>
             </ul>
         </section>
-
-        <!-- Preguntas Frecuentes -->
-        <section class="mb-5 fade-in-up">
-            <h2 class="text-primary"><i class="fas fa-question-circle"></i> Preguntas Frecuentes</h2>
-            <div class="accordion" id="faqAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq1">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
-                            ¿Cómo realizo una compra?
-                        </button>
-                    </h2>
-                    <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Selecciona tus productos, añádelos al carrito y sigue el proceso de pago seguro.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq2">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
-                            ¿Cuáles son los métodos de pago?
-                        </button>
-                    </h2>
-                    <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Aceptamos tarjetas de crédito, débito, transferencias bancarias y pagos en línea.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Políticas -->
-        <section class="mb-5 fade-in-up">
-            <h2 class="text-primary"><i class="fas fa-file-contract"></i> Políticas</h2>
-            <p>
-                Contamos con políticas claras de devolución, privacidad y envíos para garantizar tu confianza.
-            </p>
-        </section>
     </div>
 
    <!-- Footer -->
@@ -350,10 +302,10 @@
                 <div class="col-lg-2 col-md-6 mb-4 footer-links">
                     <h5>Soporte</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Ayuda</a></li>
-                        <li><a href="#">Devoluciones</a></li>
-                        <li><a href="#">Garantía</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="{{ route('faq') }}">Preguntas frecuentes</a></li>
+                        <li><a href="{{ route('devoluciones') }}">Devoluciones</a></li>
+                        <li><a href="{{route('garantia')}}">Garantía</a></li>
+                        <li><a href="#">Sobre nosotros</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 mb-4">

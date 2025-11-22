@@ -13,7 +13,6 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    
     <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -96,23 +95,13 @@
             margin-top: 1rem;
         }
 
-        /* Product Grid */
-        .products-header {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
+        /* Product Cards */
         .product-card {
-            background: white;
             border: none;
             border-radius: 15px;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .product-card:hover {
@@ -120,30 +109,21 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
 
-        .product-image-container {
-            position: relative;
-            height: 280px;
-            overflow: hidden;
-        }
-
         .product-image {
-            width: 100%;
-            height: 100%;
+            height: 250px;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            width: 100%;
         }
 
-        .product-card:hover .product-image {
-            transform: scale(1.05);
+        .price-tag {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--tech-blue);
         }
 
-        .product-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            z-index: 2;
+        .rating {
+            color: #ffc107;
         }
-
         .wishlist-btn {
             position: absolute;
             top: 15px;
@@ -273,23 +253,6 @@
             color: white;
         }
 
-        /* Pagination */
-        .pagination .page-link {
-            color: var(--tech-blue);
-            border: 1px solid #dee2e6;
-            padding: 0.75rem 1rem;
-        }
-
-        .pagination .page-link:hover {
-            background: var(--tech-blue);
-            border-color: var(--tech-blue);
-            color: white;
-        }
-
-        .pagination .active .page-link {
-            background: var(--tech-blue);
-            border-color: var(--tech-blue);
-        }
 
         /* Footer */
         .footer {
@@ -400,9 +363,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contacto') }}">Contacto</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('sobre-nosotros') }}">Sobre nosotros</a>
-                    </li>
                 </ul>
                 
                       <ul class="navbar-nav d-flex align-items-center ms-auto">
@@ -437,7 +397,7 @@
                                     <i class="fas fa-user"></i> {{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="{{ route('inicio') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
                                     <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fas fa-user-edit"></i> Mi Perfil</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
@@ -547,18 +507,20 @@
                         <button class="btn btn-outline-secondary w-100">Limpiar Filtros</button>
                     </div>
                 </div>
+           
+        
 
-                <!-- Products Grid -->
-                <div class="col-lg-9">
+            <!-- Products Grid -->
+            <div class="col-lg-9">
                     <div class="products-header">
                         <div class="row align-items-center">
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <h4 class="mb-0">Productos Tecnológicos</h4>
-                                <p class="text-muted mb-0">
+                                <p class="text-muted mb-1">
                                     Mostrando {{ count($productos) }} productos
                                 </p>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <div class="d-flex justify-content-md-end justify-content-start mt-3 mt-md-0">
                                     <div class="d-flex align-items-center gap-3">
                                         <label class="form-label mb-0">Ordenar por:</label>
@@ -582,47 +544,38 @@
                             </div>
                         </div>
                     </div>
+            
                     
-                    <!-- Products Grid -->
-                    <div class="row g-4" id="productsGrid">
-                        @foreach($productos as $producto)
-                        <div class="col-lg-4 col-md-6">
-                                <div class="card product-card">
-                                    <div class="product-image-container">
-                                        <img src="{{ asset('img/' . $producto->imagen_producto) }}" 
-                                        alt="{{ $producto->nombre_producto }}" 
-                                        style="height: 280px; width: 100%; object-fit: cover; border-radius: 8px;">
-                                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    <section>
 
-                                        @if($producto->descuento)
-                                            <div class="product-badge">
-                                                <span class="badge bg-danger">-{{ $producto->descuento }}%</span>
+                        <div class="row g-4">
+                            @foreach ($productos as $producto)
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="card product-card h-100">
+                                            <div class="position-relative">
+                                                <div class="product-image-container">
+                                                    <img src="{{ asset('img/' . $producto->imagen_producto) }}" 
+                                                        alt="{{ $producto->nombre_producto }}" 
+                                                        class="product-image">
+                                                </div>
                                             </div>
-                                        @endif
-                                    </div>
 
-                                    <div class="product-info">
-                                        <div class="product-category">{{ $producto->categoria->nombre_categoria ?? 'Sin categoría' }}</div>
-                                        <h5 class="product-title">{{ $producto->nombre_producto }}</h5>
-                                        <p class="product-description">{{ $producto->descripcion_producto }}</p>
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <div class="rating">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </div>
+                                                    <span class="price-tag">${{ number_format($producto->precio, 2) }}</span>
+                                                </div>
+                                                <h5 class="card-title">{{ $producto->nombre_producto }}</h5>
+                                                <p class="card-text text-muted"> {{ $producto->descripcion_ }}</p>
+                                                <div class="d-grid">
 
-                                        <div class="product-rating">
-                                            <div class="stars">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </div>
-                                            <span class="rating-count">( {{ rand(20,200) }} reseñas )</span>
-                                        </div>
-
-                                        <div class="product-price">
-                                            <span class="current-price">${{ number_format($producto->precio, 2) }}</span>
-                                        </div>
-
-                                        <div class="product-actions">
-                                            @php
+                                                        @php
                                                                 if(Auth::check()) {
                                                                     // Usuario autenticado
                                                                     $enCarrito = \App\Models\Carrito::where('user_id', Auth::id())
@@ -646,7 +599,7 @@
                                                     <form action="{{ route('carrito.agregar', $producto->id_producto) }}" method="POST" class="d-grid">
                                                             @csrf
                                                             <button type="submit" 
-                                                                class="btn add-to-cart-btn"
+                                                            class="btn add-to-cart-btn"
                                                                 data-product="{{ $producto->nombre_producto }}"
                                                                 data-price="{{ $producto->precio }}"
                                                                 data-image="{{ asset('img/' . $producto->imagen_producto) }}"
@@ -657,51 +610,44 @@
                                                             </button>
                                                         </form>
                                                                         @endif
-
-
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-                
+                        </div> 
+                 
+                    </section>
+            
+
+                <style>
+                        .product-image-container {
+                            height: 250px;
+                        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        overflow: hidden;
+                        border-radius: 8px 8px 0 0;
+                        position: relative;
+                    }
+                    .product-image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        padding: 20px;
+                        transition: transform 0.3s ease;
+                    }
+                    .product-card:hover .product-image {
+                        transform: scale(1.05);
+                    }
+    
+                </style>
+
+       </div>
     </div>
 
-        <!-- Pagination Estática -->
-<nav aria-label="Navegación de productos" class="mt-4">
-    <ul class="pagination justify-content-center">
-        <!-- Botón Anterior -->
-        <li class="page-item disabled">
-            <span class="page-link">Anterior</span>
-        </li>
-        
-        <!-- Números de página -->
-        <li class="page-item active">
-            <span class="page-link">1</span>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#productos">2</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#productos">3</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#productos">4</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#productos">5</a>
-        </li>
-        
-        <!-- Botón Siguiente -->
-        <li class="page-item">
-            <a class="page-link" href="#productos">Siguiente</a>
-        </li>
-    </ul>
-</nav>
 
     <!-- Footer -->
     <footer class="footer">
@@ -728,10 +674,10 @@
                 <div class="col-lg-2 col-md-6 mb-4">
                     <h5>Soporte</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Ayuda</a></li>
-                        <li><a href="#">Devoluciones</a></li>
-                        <li><a href="#">Garantía</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="{{ route('faq') }}">Preguntas frecuentes</a></li>
+                        <li><a href="{{ route('devoluciones') }}">Devoluciones</a></li>
+                        <li><a href="{{route('garantia')}}">Garantía</a></li>
+                        <li><a href="{{ route('sobre-nosotros') }}">Sobre nosotros</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 mb-4">
@@ -772,44 +718,6 @@
             </div>
         </div>
     </div>
-
-        
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                }
-            });
-        }, observerOptions);
-
-        // Observe cards for animation
-        document.querySelectorAll('.category-card, .product-card').forEach(card => {
-            observer.observe(card);
-        });
-    </script>
-
-    
 
 </body>
 </html>

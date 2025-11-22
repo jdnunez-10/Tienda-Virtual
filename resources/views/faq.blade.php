@@ -422,10 +422,10 @@ festivos por ley, se consideran no hábiles
                 <div class="col-lg-2 col-md-6 mb-4">
                     <h5>Soporte</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Ayuda</a></li>
-                        <li><a href="#">Devoluciones</a></li>
-                        <li><a href="#">Garantía</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Preguntas frecuentes</a></li>
+                        <li><a href="{{ route('devoluciones') }}">Devoluciones</a></li>
+                        <li><a href="{{route('garantia')}}">Garantía</a></li>
+                        <li><a href="{{ route('sobre-nosotros') }}">Sobre nosotros</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 mb-4">

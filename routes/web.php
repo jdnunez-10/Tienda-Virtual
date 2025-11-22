@@ -11,6 +11,9 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\DevolucionesController;
+use App\Http\Controllers\FAQController;
+use App\Http\Controllers\GarantiasController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,12 +29,6 @@ Route::get('/inicio',
 
 Route::get('/productos', 
 [ProductosController::class, 'productos'])->name('productos');
-
-Route::get('/', 
-[ProductosController::class, 'mostrarEnProductos'])->name('productos');
-
-Route::get('/', 
-[ProductosController::class, 'mostrarCategorias'])->name('productos');
 
 
 Route::get('/categorias', 
@@ -54,14 +51,20 @@ Route::get('/contacto',
 Route::get('/sobre-nosotros', 
 [InfoController::class, 'sobreNosotros'])->name('sobre-nosotros');
 
+Route::get('/devoluciones',
+[DevolucionesController::class, 'devoluciones'])->name('devoluciones');
+
+Route::get('/FAQ', [FAQController::class, 'faq'])->name('faq');
+
+Route::get('/sobre-nosotros', 
+[InfoController::class, 'sobreNosotros'])->name('sobre-nosotros');
+
+Route::get('/garantia',
+[GarantiasController::class, 'garantias'])->name('garantia');
+
 // Rutas del carrito (accesibles para todos, pero con lógica diferente según autenticación)
 Route::post('/carrito/agregar/{id_producto}', [CarritoController::class, 'agregar'])
     ->name('carrito.agregar');
-
-
-
-
-
 
 // Ruta para procesar el checkout (solo usuarios autenticados)
 Route::middleware(['auth'])->group(function () {
