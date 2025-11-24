@@ -549,7 +549,7 @@
                     <section>
 
                         <div class="row g-4">
-                            @foreach ($productos as $producto)
+                            @foreach ($productoss as $producto)
                                     <div class="col-lg-4 col-md-6">
                                         <div class="card product-card h-100">
                                             <div class="position-relative">
@@ -644,6 +644,45 @@
                     }
     
                 </style>
+                <!-- Pagination -->
+                <nav aria-label="Navegación de productos" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <!-- Botón Anterior -->
+                        @if ($productoss->onFirstPage())
+                            <li class="page-item disabled">
+                                <span class="page-link">Anterior</span>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $productoss->previousPageUrl() }}" rel="prev">Anterior</a>
+                            </li>
+                        @endif
+
+                        <!-- Números de página -->
+                        @foreach ($productoss->getUrlRange(1, $productoss->lastPage()) as $page => $url)
+                            @if ($page == $productoss->currentPage())
+                                <li class="page-item active">
+                                    <span class="page-link">{{ $page }}</span>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                </li>
+                            @endif
+                        @endforeach
+
+                        <!-- Botón Siguiente -->
+                        @if ($productoss->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $productoss->nextPageUrl() }}" rel="next">Siguiente</a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <span class="page-link">Siguiente</span>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
 
        </div>
     </div>
