@@ -347,7 +347,7 @@
                 </div>
                 <div class="d-none d-lg-block">
                     <a class="text-light me-3" href="#"><i class="fab fa-facebook"></i></a>
-                    <a class="text-light me-3" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="text-light me-3" href="https://www.instagram.com/techzone0704/"><i class="fab fa-instagram"></i></a>
                     <a class="text-light me-3" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="text-light" href="#"><i class="fab fa-linkedin"></i></a>
                 </div>
@@ -499,7 +499,7 @@
                                     <div class="product-info">
                                         <h5>{{ $nombre }}</h5>
                                         <div class="product-price">
-                                            L {{ number_format($precio, 2) }}
+                                            $ {{ number_format($precio, 2) }}
                                         </div>
                                     </div>
                                 </div>
@@ -530,7 +530,7 @@
 
                                 <div class="col-md-2 col-4 mt-3 mt-md-0 text-end">
                                     <div class="product-price">
-                                        L {{ number_format($subtotal, 2) }}
+                                        $ {{ number_format($subtotal, 2) }}
                                     </div>
                                 </div>
 
@@ -555,7 +555,7 @@
                         
                         <div class="summary-row">
                             <span>Subtotal:</span>
-                            <span>L {{ number_format($total, 2) }}</span>
+                            <span>$ {{ number_format($total, 2) }}</span>
                         </div>
                         
                         <div class="summary-row">
@@ -565,12 +565,12 @@
                         
                         <div class="summary-row">
                             <span>Impuestos (15%):</span>
-                            <span>L {{ number_format($total * 0.15, 2) }}</span>
+                            <span>$ {{ number_format($total * 0.15, 2) }}</span>
                         </div>
 
                         <div class="summary-row total">
                             <span>Total:</span>
-                            <span>L {{ number_format($total * 1.15, 2) }}</span>
+                            <span>$ {{ number_format($total * 1.15, 2) }}</span>
                         </div>
 
                         @auth
@@ -599,7 +599,7 @@
                         <div class="mt-3 pt-3" style="border-top: 1px solid #e0e0e0;">
                             <div class="d-flex align-items-center mb-2">
                                 <i class="fas fa-truck text-primary me-2"></i>
-                                <small>Envío gratis en compras mayores a L500</small>
+                                <small>Envío gratis en compras mayores a $500</small>
                             </div>
                             <div class="d-flex align-items-center mb-2">
                                 <i class="fas fa-undo text-primary me-2"></i>
@@ -626,7 +626,7 @@
                     <div class="d-flex">
                         <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/techzone0704/" class="me-3"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>

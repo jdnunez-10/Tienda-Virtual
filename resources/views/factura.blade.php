@@ -357,8 +357,8 @@
                         <div class="item-description">{{ Str::limit($detalle->producto->descripcion_, 100) }}</div>
                         @endif
                     </td>
-                    <td>L {{ number_format($detalle->precio_unitario, 2) }}</td>
-                    <td>L {{ number_format($detalle->subtotal, 2) }}</td>
+                    <td>$ {{ number_format($detalle->precio_unitario, 2) }}</td>
+                    <td>$ {{ number_format($detalle->subtotal, 2) }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -368,7 +368,7 @@
         <div class="totals-section">
             <div class="totals-row">
                 <div class="totals-label">Subtotal:</div>
-                <div class="totals-value">L {{ number_format($pedido->subtotal, 2) }}</div>
+                <div class="totals-value">$ {{ number_format($pedido->subtotal, 2) }}</div>
             </div>
             <div class="totals-row">
                 <div class="totals-label">Envío:</div>
@@ -376,11 +376,11 @@
             </div>
             <div class="totals-row">
                 <div class="totals-label">Impuestos (15%):</div>
-                <div class="totals-value">L {{ number_format($pedido->impuestos, 2) }}</div>
+                <div class="totals-value">$ {{ number_format($pedido->impuestos, 2) }}</div>
             </div>
             <div class="totals-row total">
                 <div class="totals-label">TOTAL:</div>
-                <div class="totals-value">L {{ number_format($pedido->total, 2) }}</div>
+                <div class="totals-value">$ {{ number_format($pedido->total, 2) }}</div>
             </div>
         </div>
 

@@ -331,7 +331,7 @@
                 </div>
                 <div class="d-none d-lg-block">
                     <a class="text-light me-3" href="#"><i class="fab fa-facebook"></i></a>
-                    <a class="text-light me-3" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="text-light me-3" href="https://www.instagram.com/techzone0704/"><i class="fab fa-instagram"></i></a>
                     <a class="text-light me-3" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="text-light" href="#"><i class="fab fa-linkedin"></i></a>
                 </div>
@@ -442,11 +442,11 @@
                                     {{ $detalle->producto->nombre_producto }}
                                 </div>
                                 <div class="text-muted small">
-                                    Cantidad: {{ $detalle->cantidad }} x L {{ number_format($detalle->precio_unitario, 2) }}
+                                    Cantidad: {{ $detalle->cantidad }} x  $ {{ number_format($detalle->precio_unitario, 2) }}
                                 </div>
                             </div>
                             <div class="order-item-price">
-                                L {{ number_format($detalle->subtotal, 2) }}
+                                $ {{ number_format($detalle->subtotal, 2) }}
                             </div>
                         </div>
                     @endforeach
@@ -521,7 +521,7 @@
                     
                     <div class="summary-row">
                         <span>Subtotal:</span>
-                        <span>L {{ number_format($pedido->subtotal, 2) }}</span>
+                        <span>$ {{ number_format($pedido->subtotal, 2) }}</span>
                     </div>
                     
                     <div class="summary-row">
@@ -531,12 +531,12 @@
                     
                     <div class="summary-row">
                         <span>Impuestos:</span>
-                        <span>L {{ number_format($pedido->impuestos, 2) }}</span>
+                        <span>$ {{ number_format($pedido->impuestos, 2) }}</span>
                     </div>
 
                     <div class="summary-row total">
                         <span>Total Pagado:</span>
-                        <span>L {{ number_format($pedido->total, 2) }}</span>
+                        <span>$ {{ number_format($pedido->total, 2) }}</span>
                     </div>
 
                     <div class="alert alert-info mt-3">
@@ -597,7 +597,7 @@
                     <div class="d-flex">
                         <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/techzone0704/" class="me-3"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>

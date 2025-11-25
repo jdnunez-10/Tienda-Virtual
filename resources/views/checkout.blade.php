@@ -410,7 +410,7 @@
                 </div>
                 <div class="d-none d-lg-block">
                     <a class="text-light me-3" href="#"><i class="fab fa-facebook"></i></a>
-                    <a class="text-light me-3" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="text-light me-3" href="https://www.instagram.com/techzone0704/"><i class="fab fa-instagram"></i></a>
                     <a class="text-light me-3" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="text-light" href="#"><i class="fab fa-linkedin"></i></a>
                 </div>
@@ -728,7 +728,7 @@
                                     <div class="text-muted small">Cantidad: {{ $cantidad }}</div>
                                 </div>
                                 <div class="order-item-price">
-                                    L {{ number_format($subtotal, 2) }}
+                                    $ {{ number_format($subtotal, 2) }}
                                 </div>
                             </div>
                         @endforeach
@@ -736,7 +736,7 @@
 
                     <div class="summary-row">
                         <span>Subtotal:</span>
-                        <span>L {{ number_format($total, 2) }}</span>
+                        <span>$ {{ number_format($total, 2) }}</span>
                     </div>
                     
                     <div class="summary-row">
@@ -746,12 +746,12 @@
                     
                     <div class="summary-row">
                         <span>Impuestos (15%):</span>
-                        <span>L {{ number_format($total * 0.15, 2) }}</span>
+                        <span>$ {{ number_format($total * 0.15, 2) }}</span>
                     </div>
 
                     <div class="summary-row total">
                         <span>Total a Pagar:</span>
-                        <span>L {{ number_format($total * 1.15, 2) }}</span>
+                        <span>$ {{ number_format($total * 1.15, 2) }}</span>
                     </div>
 
                     <div class="mt-3 pt-3" style="border-top: 1px solid #e0e0e0;">
@@ -783,7 +783,7 @@
                     <div class="d-flex">
                         <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/techzone0704/" class="me-3"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>

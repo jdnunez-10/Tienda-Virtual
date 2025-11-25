@@ -517,7 +517,7 @@
                 </div>
                 <div class="d-none d-lg-block">
                     <a class="text-light me-3" href="#"><i class="fab fa-facebook"></i></a>
-                    <a class="text-light me-3" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="text-light me-3" href="https://www.instagram.com/techzone0704/"><i class="fab fa-instagram"></i></a>
                     <a class="text-light me-3" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="text-light" href="#"><i class="fab fa-linkedin"></i></a>
                 </div>
@@ -770,7 +770,7 @@
                                 <!-- Imagen del producto -->
                                 <div class="product-image-container">
                                     <div style="height: 250px; display: flex; align-items: center; justify-content: center; background: #f8f9fa;">
-                                        <img src="{{ asset('images/' . $producto->imagen_producto) }}"
+                                        <img src="{{ asset('img/' . $producto->imagen_producto) }}"
                                             alt="{{ $producto->nombre_producto }}"
                                             style="max-height: 100%; max-width: 100%; object-fit: contain;">
                                     </div>
@@ -919,7 +919,7 @@
                     <div class="d-flex">
                         <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/techzone0704/" class="me-3"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>

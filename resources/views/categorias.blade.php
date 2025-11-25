@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+divdiv<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -342,6 +342,29 @@
             color: #6c757d;
         }
 
+        /* Category Cards */
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            color: var(--tech-blue);
+            margin-bottom: 1rem;
+        }
+
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero-categories h1 {
@@ -427,7 +450,7 @@
                 </div>
                 <div class="d-none d-lg-block">
                     <a class="text-light me-3" href="#"><i class="fab fa-facebook"></i></a>
-                    <a class="text-light me-3" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="text-light me-3" href="https://www.instagram.com/techzone0704/"><i class="fab fa-instagram"></i></a>
                     <a class="text-light me-3" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="text-light" href="#"><i class="fab fa-linkedin"></i></a>
                 </div>
@@ -583,41 +606,73 @@
     </div>
 </div>
 
-<!-- Grid principal de categorías -->
-        <div class="container">
-            <div class="category-grid" id="categoriesGrid">
-                @foreach($categorias as $categoria)
-                    <div class="category-card fade-in-up">
-                        <div class="category-header">
-                            <div class="category-gradient">
-                                
-                            </div>
-                            <div class="category-overlay">
-                                <i class="fas fa-eye text-white" style="font-size: 2rem;"></i>
-                            </div>
-                            <div class="category-badge">{{ $categoria->productos_count }} productos</div>
-                        </div>
 
-                        <div class="category-content">
-                            <h3 class="category-title">{{ $categoria->nombre_categoria }}</h3>
-                            <p class="category-description">Explora nuestra selección de {{ strtolower($categoria->nombre_categoria) }} disponibles.</p>
-
-                            <div class="category-actions">
-                                <a href="{{ route('productos', $categoria->id) }}" class="btn btn-explore">
-                                    <i class="fas fa-arrow-right me-2"></i>Explorar
-                                </a>
-                                <button class="btn btn-wishlist">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
+<!-- Grid principal de categorías mejorado -->
+<div class="container">
+    <div class="category-grid" id="categoriesGrid">
+        @foreach($categorias as $categoria)
+            <div class="category-card fade-in-up">
+                <!-- Imagen de fondo de la categoría -->
+                <div class="category-header">
+                    @php
+                        // Asignar ícono según la categoría
+                        $iconos = [
+                            'Smartphones' => 'fas fa-mobile-alt',
+                            'Laptops' => 'fas fa-laptop',
+                            'Gaming' => 'fas fa-gamepad',
+                        ];
+                        $icono = $iconos[$categoria->nombre_categoria] ?? 'fas fa-box';
+                    @endphp
+                    
+                    <i class="category-icon {{ $icono }}"></i>
+                    
+                    <div class="category-gradient"></div>
+                    
+                    
+                    <!-- Badge de cantidad de productos -->
+                    <div class="category-badge">
+                        <i class="fas fa-box me-1"></i>
+                        {{ $categoria->productos_count }} productos
                     </div>
-                @endforeach
+
+                    <!-- Badge de ofertas si hay productos en oferta -->
+                    @if($categoria->ofertas_count ?? 0 > 0)
+                        <div class="offers-badge">
+                            <i class="fas fa-fire me-1"></i>
+                            {{ $categoria->ofertas_count }} en oferta
+                        </div>
+                    @endif
+                </div>
+
+                <!-- Contenido de la tarjeta -->
+                <div class="category-content">
+                    <div class="category-info">
+                        <h3 class="category-title">
+                            {{ $categoria->nombre_categoria }}
+                        </h3>
+                        <p class="category-description">
+                            {{ $categoria->descripcion ?? 'Explora nuestra selección de ' . strtolower($categoria->nombre_categoria) . ' disponibles.' }}
+                        </p>
+                    </div>
+
+                
+                    <!-- Botones de acción -->
+                    <div class="category-actions">
+                        <a href="{{ route('productos', $categoria->id) }}" class="btn btn-explore">
+                            <span>Explorar Categoría</span>
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                        <button class="btn btn-wishlist" title="Agregar a favoritos">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
+        @endforeach
+    </div>
+</div>
 
 
-        
             
          <!-- Footer -->
     <footer class="footer">
@@ -629,7 +684,7 @@
                     <div class="d-flex">
                         <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/techzone0704/" class="me-3"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
